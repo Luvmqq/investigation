@@ -4,24 +4,49 @@ import { navItems, site } from "@/data/site";
 ---
 
 <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-  <div class="container-page flex h-[72px] items-center justify-between gap-4">
-    <a class="flex items-center gap-3 font-black text-brand-800" href="/" aria-label={site.nameZh}>
-      <span class="grid size-10 place-items-center rounded-lg bg-brand-600 text-white">X</span>
-      <span class="leading-tight">
-        <span data-zh={site.nameZh} data-en={site.nameEn}>{site.nameZh}</span>
-        <small class="block text-xs font-semibold text-slate-500" data-zh="本地调查协助" data-en="Local Investigation Support">本地调查协助</small>
-      </span>
-    </a>
+  <div class="container-page">
+    <div class="flex min-h-[64px] items-center justify-between gap-3 py-2 lg:min-h-[72px]">
+      <a class="flex min-w-0 items-center gap-3 font-black text-brand-800" href="/" aria-label={site.nameZh}>
+        <span class="grid size-10 shrink-0 place-items-center rounded-lg bg-brand-600 text-white">X</span>
+        <span class="min-w-0 leading-tight">
+          <span class="block truncate text-sm sm:text-base" data-zh={site.nameZh} data-en={site.nameEn}>{site.nameZh}</span>
+          <small class="block text-xs font-semibold text-slate-500" data-zh="本地调查协助" data-en="Local Investigation Support">本地调查协助</small>
+        </span>
+      </a>
 
-    <div class="flex items-center gap-4">
-      <nav class="hidden items-center gap-5 text-sm font-semibold text-slate-600 lg:flex" aria-label="Primary">
-        {navItems.map((item) => (
-          <a class="hover:text-brand-600" href={item.href} data-zh={item.zh} data-en={item.en}>{item.zh}</a>
-        ))}
-        <a class="hover:text-brand-600" href={site.officialWebsite} target="_blank" rel="noopener noreferrer" data-zh="官网" data-en="Official">官网</a>
-      </nav>
-      <LanguageSwitcher />
-      <a class="button button-primary hidden sm:inline-flex" href="/contact/" data-zh="咨询" data-en="Consultation">咨询</a>
+      <div class="flex shrink-0 items-center gap-2 sm:gap-4">
+        <nav class="hidden items-center gap-5 text-sm font-semibold text-slate-600 lg:flex" aria-label="Primary">
+          {navItems.map((item) => (
+            <a class="hover:text-brand-600" href={item.href} data-zh={item.zh} data-en={item.en}>{item.zh}</a>
+          ))}
+          <a class="hover:text-brand-600" href={site.officialWebsite} target="_blank" rel="noopener noreferrer" data-zh="官网" data-en="Official">官网</a>
+        </nav>
+        <LanguageSwitcher />
+        <a class="button button-primary hidden sm:inline-flex" href="/contact/" data-zh="咨询" data-en="Consultation">咨询</a>
+      </div>
     </div>
+
+    <details class="mobile-menu border-t border-slate-100 py-2 lg:hidden">
+      <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg px-1 py-2 text-sm font-black text-brand-800">
+        <span data-zh="导航菜单" data-en="Navigation">导航菜单</span>
+        <span class="menu-mark grid size-8 place-items-center rounded-full border border-slate-200 text-lg leading-none" aria-hidden="true">+</span>
+      </summary>
+      <nav class="grid grid-cols-2 gap-2 pb-2 pt-1 text-sm font-bold text-slate-700" aria-label="Mobile primary">
+        {navItems.map((item) => (
+          <a class="rounded-lg border border-slate-200 bg-white px-3 py-2 hover:border-brand-600 hover:text-brand-700" href={item.href} data-zh={item.zh} data-en={item.en}>{item.zh}</a>
+        ))}
+        <a class="rounded-lg border border-slate-200 bg-white px-3 py-2 hover:border-brand-600 hover:text-brand-700" href={site.officialWebsite} target="_blank" rel="noopener noreferrer" data-zh="官网" data-en="Official">官网</a>
+      </nav>
+    </details>
   </div>
 </header>
+
+<style>
+  .mobile-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-menu[open] .menu-mark {
+    transform: rotate(45deg);
+  }
+</style>

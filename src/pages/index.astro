@@ -37,27 +37,57 @@ const jsonLd = [
     }))
   }
 ];
+
+const heroTrust = [
+  { zh: "10+年行业经验", en: "10+ years experience" },
+  { zh: "专业机构", en: "Professional organization" },
+  { zh: "诚信服务", en: "Integrity service" },
+  { zh: "隐私与保密处理", en: "Private and confidential" }
+];
+
+const visualNotes = [
+  { zh: "本地", en: "Local", bodyZh: "中国大陆本地沟通与情况评估", bodyEn: "Mainland China local communication and assessment" },
+  { zh: "保密", en: "Private", bodyZh: "委托资料谨慎处理", bodyEn: "Discreet handling of case information" },
+  { zh: "合规", en: "Compliant", bodyZh: "先评估，再决定是否接案", bodyEn: "Assessment before case acceptance" }
+];
+
+const process = [
+  { zh: "初步咨询", en: "Initial consultation", bodyZh: "简要说明事情经过和你想了解的问题。", bodyEn: "Tell us what happened and what you need to understand." },
+  { zh: "案件评估", en: "Case assessment", bodyZh: "评估可行性、风险、范围和所需资料。", bodyEn: "We assess feasibility, risk, scope, and required information." },
+  { zh: "调查方案", en: "Investigation plan", bodyZh: "提供适合中国本地执行的方案。", bodyEn: "We propose a practical local investigation approach." },
+  { zh: "本地协助", en: "Local assistance", bodyZh: "中国大陆本地团队按约定执行。", bodyEn: "Our mainland China team carries out agreed support work." },
+  { zh: "进展与结果", en: "Updates and report", bodyZh: "提供进展反馈与结果总结。", bodyEn: "You receive progress updates and a case summary." }
+];
 ---
 
 <BaseLayout title={title} description={description} path="/" jsonLd={jsonLd}>
   <main>
     <section class="overflow-hidden bg-white">
-      <div class="container-page grid gap-10 py-16 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-20">
+      <div class="container-page grid gap-10 py-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-20">
         <div>
           <span class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-sm font-black text-brand-700" data-zh="面向海外华人的中国本地调查协助" data-en="For Overseas Chinese Clients">面向海外华人的中国本地调查协助</span>
-          <h1 class="mt-5 max-w-4xl text-5xl font-black leading-[1.06] text-ink md:text-6xl" data-zh="中国大陆本地调查协助服务" data-en="Investigation Assistance in Mainland China">中国大陆本地调查协助服务</h1>
-          <p class="mt-6 max-w-2xl text-lg text-slate-600" data-zh="南京星外天商务咨询有限公司为海外华人提供中国大陆境内的婚恋关系调查、个人情况了解、寻人协助、债务人线索调查与私人委托协助服务。" data-en="Nanjing Xingwaitian Business Consulting Co., Ltd. provides local investigation assistance for overseas Chinese clients who need help understanding people, relationships, debts, and private situations in mainland China.">南京星外天商务咨询有限公司为海外华人提供中国大陆境内的婚恋关系调查、个人情况了解、寻人协助、债务人线索调查与私人委托协助服务。</p>
+          <h1 class="mt-5 max-w-4xl text-4xl font-black leading-[1.08] text-ink sm:text-5xl md:text-6xl" data-zh="中国大陆本地调查协助服务" data-en="Investigation Assistance in Mainland China">中国大陆本地调查协助服务</h1>
+
+          <div class="relative mt-6 lg:hidden">
+            <img class="aspect-[16/11] w-full rounded-lg object-cover shadow-soft" src="/images/china-business-scene.svg" alt="China city and business communication scene" loading="eager" />
+            <div class="absolute bottom-3 left-3 right-3 rounded-lg bg-white/92 p-3 shadow-soft">
+              <p class="text-sm font-black text-brand-800" data-zh="10+年行业经验 · 专业机构 · 诚信服务" data-en="10+ years · Professional · Integrity service">10+年行业经验 · 专业机构 · 诚信服务</p>
+            </div>
+          </div>
+
+          <p class="mt-6 max-w-2xl text-base text-slate-600 sm:text-lg" data-zh="南京星外天商务咨询有限公司为海外华人提供中国大陆境内的婚恋关系调查、个人情况了解、寻人协助、债务人线索调查与私人委托协助服务。" data-en="Nanjing Xingwaitian Business Consulting Co., Ltd. provides local investigation assistance for overseas Chinese clients who need help understanding people, relationships, debts, and private situations in mainland China.">南京星外天商务咨询有限公司为海外华人提供中国大陆境内的婚恋关系调查、个人情况了解、寻人协助、债务人线索调查与私人委托协助服务。</p>
           <div class="mt-8 flex flex-wrap gap-3">
             <a class="button button-primary" href="/contact/" data-zh="WhatsApp 咨询" data-en="WhatsApp Consultation">WhatsApp 咨询</a>
             <a class="button button-secondary" href="#services" data-zh="查看服务" data-en="View Services">查看服务</a>
           </div>
           <div class="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {["10+年行业经验", "专业机构", "诚信服务", "隐私与保密处理"].map((item, index) => (
-              <div class="card p-4 text-sm font-black text-slate-700" data-zh={item} data-en={["10+ years experience", "Professional organization", "Integrity service", "Private and confidential"][index]}>{item}</div>
+            {heroTrust.map((item) => (
+              <div class="card p-4 text-sm font-black text-slate-700" data-zh={item.zh} data-en={item.en}>{item.zh}</div>
             ))}
           </div>
         </div>
-        <div class="relative">
+
+        <div class="relative hidden lg:block">
           <img class="aspect-[4/3] w-full rounded-lg object-cover shadow-soft" src="/images/china-business-scene.svg" alt="China city and business communication scene" loading="eager" />
           <div class="card absolute -bottom-6 left-6 right-6 p-5">
             <h2 class="text-xl font-black text-brand-800" data-zh="你是否需要了解中国境内某个人或某件事的真实情况？" data-en="Need to understand a situation in China?">你是否需要了解中国境内某个人或某件事的真实情况？</h2>
@@ -71,9 +101,23 @@ const jsonLd = [
       </div>
     </section>
 
+    <section class="bg-slate-50 py-8 lg:py-12">
+      <div class="container-page grid gap-4 md:grid-cols-[1.15fr_.85fr] md:items-center">
+        <img class="aspect-[16/9] w-full rounded-lg object-cover shadow-soft" src="/images/china-business-scene.svg" alt="Business investigation support visual" loading="lazy" />
+        <div class="grid gap-3 sm:grid-cols-3 md:grid-cols-1">
+          {visualNotes.map((item) => (
+            <div class="card p-5">
+              <strong class="text-2xl font-black text-brand-700" data-zh={item.zh} data-en={item.en}>{item.zh}</strong>
+              <p class="mt-1 text-sm text-slate-600" data-zh={item.bodyZh} data-en={item.bodyEn}>{item.bodyZh}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <Credentials />
 
-    <section id="services" class="py-20">
+    <section id="services" class="py-16 lg:py-20">
       <div class="container-page">
         <div class="max-w-3xl">
           <h2 class="section-title" data-zh="我们可以协助的服务" data-en="What We Help With">我们可以协助的服务</h2>
@@ -85,17 +129,17 @@ const jsonLd = [
       </div>
     </section>
 
-    <section class="bg-white py-20">
+    <section class="bg-white py-16 lg:py-20">
       <div class="container-page grid gap-8 lg:grid-cols-2">
         <div class="card p-7">
           <h2 class="section-title" data-zh="服务流程" data-en="How It Works">服务流程</h2>
           <ol class="mt-6 grid gap-4">
-            {["初步咨询", "案件评估", "调查方案", "本地协助", "进展与结果"].map((item, index) => (
+            {process.map((item, index) => (
               <li class="grid grid-cols-[2.5rem_1fr] gap-3">
                 <span class="grid size-10 place-items-center rounded-lg bg-brand-600 font-black text-white">{index + 1}</span>
                 <div>
-                  <strong class="block text-ink" data-zh={item} data-en={["Initial consultation", "Case assessment", "Investigation plan", "Local assistance", "Updates and report"][index]}>{item}</strong>
-                  <span class="text-sm text-slate-600" data-zh={["简要说明事情经过和你想了解的问题。", "评估可行性、风险、范围和所需资料。", "提供适合中国本地执行的方案。", "中国大陆本地团队按约定执行。", "提供进展反馈与结果总结。"][index]} data-en={["Tell us what happened and what you need to understand.", "We assess feasibility, risk, scope, and required information.", "We propose a practical local investigation approach.", "Our mainland China team carries out agreed support work.", "You receive progress updates and a case summary."][index]}>{["简要说明事情经过和你想了解的问题。", "评估可行性、风险、范围和所需资料。", "提供适合中国本地执行的方案。", "中国大陆本地团队按约定执行。", "提供进展反馈与结果总结。"][index]}</span>
+                  <strong class="block text-ink" data-zh={item.zh} data-en={item.en}>{item.zh}</strong>
+                  <span class="text-sm text-slate-600" data-zh={item.bodyZh} data-en={item.bodyEn}>{item.bodyZh}</span>
                 </div>
               </li>
             ))}
@@ -109,7 +153,7 @@ const jsonLd = [
       </div>
     </section>
 
-    <section class="py-20">
+    <section class="py-16 lg:py-20">
       <div class="container-page grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
         <div>
           <h2 class="section-title" data-zh="常见问题" data-en="Frequently Asked Questions">常见问题</h2>
