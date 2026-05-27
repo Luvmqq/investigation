@@ -95,11 +95,12 @@ const trustStrip = [
 <BaseLayout title={title} description={description} path="/" jsonLd={jsonLd}>
   <main class="bg-white">
     <section class="border-b border-slate-200 bg-white">
-      <div class="container-page grid gap-12 py-16 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-24">
+      <div class="container-page grid gap-12 py-16 lg:min-h-[720px] lg:grid-cols-[1.02fr_.98fr] lg:items-center lg:py-24">
         <div>
           <p class="text-sm font-black uppercase tracking-[.18em] text-brand-700" data-zh="B2B 跨境核验与本地调查协助" data-en="Cross-border Verification and Local Investigation Support">B2B 跨境核验与本地调查协助</p>
-          <h1 class="mt-5 max-w-4xl text-4xl font-black leading-[1.05] text-[#102033] sm:text-5xl md:text-6xl" data-zh="中国大陆本地调查协助服务" data-en="Mainland China Investigation Support">中国大陆本地调查协助服务</h1>
-          <p class="mt-6 max-w-2xl text-lg text-slate-600" data-zh="面向海外华人和跨境客户，提供婚恋关系调查、个人背景了解、寻人协助、债务人线索调查与私人委托协助。先评估合法性与可行性，再决定是否接受委托。" data-en="For overseas Chinese and cross-border clients, we support relationship checks, personal background assessment, locating assistance, debtor clue investigation, and private matter review. Every request is assessed for legality and feasibility first.">面向海外华人和跨境客户，提供婚恋关系调查、个人背景了解、寻人协助、债务人线索调查与私人委托协助。先评估合法性与可行性，再决定是否接受委托。</p>
+          <h1 class="mt-5 max-w-4xl text-5xl font-black leading-[1.02] text-[#102033] sm:text-6xl md:text-7xl" data-zh="中国大陆本地调查协助服务" data-en="Mainland China Investigation Support">中国大陆本地调查协助服务</h1>
+          <p class="mt-6 max-w-2xl text-2xl font-semibold leading-relaxed text-slate-600" data-zh="Fact-check. Assess. Make safer cross-border decisions." data-en="Fact-check. Assess. Make safer cross-border decisions.">Fact-check. Assess. Make safer cross-border decisions.</p>
+          <p class="mt-5 max-w-2xl text-lg text-slate-600" data-zh="面向海外华人和跨境客户，提供婚恋关系调查、个人背景了解、寻人协助、债务人线索调查与私人委托协助。先评估合法性与可行性，再决定是否接受委托。" data-en="For overseas Chinese and cross-border clients, we support relationship checks, personal background assessment, locating assistance, debtor clue investigation, and private matter review. Every request is assessed for legality and feasibility first.">面向海外华人和跨境客户，提供婚恋关系调查、个人背景了解、寻人协助、债务人线索调查与私人委托协助。先评估合法性与可行性，再决定是否接受委托。</p>
           <div class="mt-8 flex flex-wrap gap-3">
             <a class="button button-primary" href="/contact/" data-zh="提交咨询" data-en="Start Inquiry">提交咨询</a>
             <a class="button button-secondary" href="#services" data-zh="查看服务范围" data-en="View Services">查看服务范围</a>
@@ -107,22 +108,37 @@ const trustStrip = [
           </div>
         </div>
 
-        <div class="hero-business-panel">
-          <img class="aspect-[4/3] w-full object-cover" src="/images/china-business-scene.svg" alt="Mainland China investigation support" loading="eager" />
-          <div class="grid border-t border-slate-200 md:grid-cols-3">
-            <div class="hero-stat">
-              <strong>10+</strong>
-              <span data-zh="年行业经验" data-en="Years experience">年行业经验</span>
+        <div class="hero-verification-visual">
+          <div class="hero-report-card">
+            <div class="report-document-header">
+              <span data-zh="Assessment Report" data-en="Assessment Report">Assessment Report</span>
+              <strong data-zh="中国本地情况核验" data-en="China Local Situation Review">中国本地情况核验</strong>
             </div>
-            <div class="hero-stat">
-              <strong>4</strong>
-              <span data-zh="核心服务" data-en="Core services">核心服务</span>
+            <div class="mt-7 grid gap-4">
+              {reportItems.map((item) => (
+                <div class="hero-report-row">
+                  <span></span>
+                  <strong data-zh={item.zh} data-en={item.en}>{item.zh}</strong>
+                </div>
+              ))}
             </div>
-            <div class="hero-stat">
-              <strong>6</strong>
-              <span data-zh="信任资质" data-en="Trust assets">信任资质</span>
+            <div class="mt-8 grid grid-cols-3 divide-x divide-slate-200 border border-slate-200">
+              <div class="hero-stat">
+                <strong>10+</strong>
+                <span data-zh="年行业经验" data-en="Years experience">年行业经验</span>
+              </div>
+              <div class="hero-stat">
+                <strong>4</strong>
+                <span data-zh="核心服务" data-en="Core services">核心服务</span>
+              </div>
+              <div class="hero-stat">
+                <strong>6</strong>
+                <span data-zh="信任资质" data-en="Trust assets">信任资质</span>
+              </div>
             </div>
           </div>
+          <img class="hero-cert hero-cert-a" src="/images/trust/trust-01.png" alt="Investigation alliance credential" loading="eager" />
+          <img class="hero-cert hero-cert-b" src="/images/trust/trust-04.png" alt="Business license credential" loading="eager" />
         </div>
       </div>
     </section>
