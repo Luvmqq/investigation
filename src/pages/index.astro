@@ -41,18 +41,21 @@ const jsonLd = [
 
 const audiences = [
   {
+    image: "/images/trust/trust-02.png",
     titleZh: "海外华人",
     titleEn: "Overseas Chinese Clients",
     bodyZh: "需要了解中国境内关系对象、亲友、前任或债务人的现实情况。",
     bodyEn: "Understand the practical situation of a person, relative, former partner, or debtor in China."
   },
   {
+    image: "/images/trust/trust-04.png",
     titleZh: "跨境家庭与私人委托",
     titleEn: "Cross-border Family and Private Matters",
     bodyZh: "在婚恋、家庭、财务或重要私人决策前，需要降低不确定性。",
     bodyEn: "Reduce uncertainty before relationship, family, financial, or private decisions."
   },
   {
+    image: "/images/trust/trust-03.png",
     titleZh: "境外企业或专业人士",
     titleEn: "Overseas Businesses and Professionals",
     bodyZh: "需要本地公开信息研究、线索整理与中国现实环境判断。",
@@ -79,6 +82,13 @@ const process = [
   { zh: "初步评估", en: "Initial Review", bodyZh: "判断合法性、资料基础、可行性和服务边界。", bodyEn: "Review legality, available information, feasibility, and service boundaries." },
   { zh: "本地协助", en: "Local Support", bodyZh: "在约定范围内做公开信息研究、线索整理或线下协助。", bodyEn: "Conduct public information research, clue organization, or offline support within scope." },
   { zh: "结果反馈", en: "Result Summary", bodyZh: "提供清晰、可理解、便于决策的情况总结。", bodyEn: "Provide a clear, understandable, decision-useful summary." }
+];
+
+const trustStrip = [
+  { zh: "10+年行业经验", en: "10+ Years Experience" },
+  { zh: "专业机构", en: "Professional Organization" },
+  { zh: "诚信服务", en: "Integrity Service" },
+  { zh: "合规保密", en: "Compliance and Confidentiality" }
 ];
 ---
 
@@ -119,8 +129,8 @@ const process = [
 
     <section class="bg-white py-14">
       <div class="container-page grid gap-4 border-y border-slate-200 py-8 md:grid-cols-4">
-        {["10+年行业经验", "专业机构", "诚信服务", "合规保密"].map((item) => (
-          <div class="trust-strip-item" data-zh={item} data-en={item}>{item}</div>
+        {trustStrip.map((item) => (
+          <div class="trust-strip-item" data-zh={item.zh} data-en={item.en}>{item.zh}</div>
         ))}
       </div>
     </section>
@@ -133,9 +143,12 @@ const process = [
         </div>
         <div class="mt-10 grid gap-5 md:grid-cols-3">
           {audiences.map((item) => (
-            <article class="business-card p-7">
-              <h3 class="text-xl font-black text-ink" data-zh={item.titleZh} data-en={item.titleEn}>{item.titleZh}</h3>
-              <p class="mt-4 text-slate-600" data-zh={item.bodyZh} data-en={item.bodyEn}>{item.bodyZh}</p>
+            <article class="business-card overflow-hidden">
+              <img class="aspect-[16/10] w-full object-cover" src={item.image} alt={item.titleZh} loading="lazy" />
+              <div class="p-7">
+                <h3 class="text-xl font-black text-ink" data-zh={item.titleZh} data-en={item.titleEn}>{item.titleZh}</h3>
+                <p class="mt-4 text-slate-600" data-zh={item.bodyZh} data-en={item.bodyEn}>{item.bodyZh}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -147,7 +160,7 @@ const process = [
         <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
           <div>
             <p class="section-label" data-zh="Services" data-en="Services">Services</p>
-            <h2 class="section-title mt-3" data-zh="服务卡片" data-en="Investigation Support Services">服务卡片</h2>
+            <h2 class="section-title mt-3" data-zh="本地调查协助服务" data-en="Investigation Support Services">本地调查协助服务</h2>
           </div>
           <p class="text-lg text-slate-600" data-zh="服务范围围绕当前站点业务：关系调查、背景了解、寻人协助与债务人线索调查。每项服务都需要先做合规与可行性评估。" data-en="The service scope remains focused on relationship investigation, background assessment, locating assistance, and debtor clue support. Each service starts with compliance and feasibility review.">服务范围围绕当前站点业务：关系调查、背景了解、寻人协助与债务人线索调查。每项服务都需要先做合规与可行性评估。</p>
         </div>
@@ -197,6 +210,24 @@ const process = [
               <p class="mt-3 text-sm text-white/70" data-zh={item.bodyZh} data-en={item.bodyEn}>{item.bodyZh}</p>
             </article>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-16 lg:py-20">
+      <div class="container-page">
+        <div class="expertise-band">
+          <div>
+            <p class="section-label" data-zh="Experience" data-en="Experience">Experience</p>
+            <h2 class="mt-3 text-3xl font-black leading-tight text-ink md:text-4xl" data-zh="中国本地调查协助专业机构，10+年行业经验" data-en="China Local Investigation Support With 10+ Years Experience">中国本地调查协助专业机构，10+年行业经验</h2>
+            <p class="mt-4 text-lg text-slate-600" data-zh="基于星外天官网公开信息和资质展示，本站以更适合海外客户的方式呈现合规、保密、可沟通的本地调查协助服务。" data-en="Based on public Xingwaitian information and credential materials, this site presents local investigation support in a compliance-aware, confidential, and overseas-client-friendly way.">基于星外天官网公开信息和资质展示，本站以更适合海外客户的方式呈现合规、保密、可沟通的本地调查协助服务。</p>
+          </div>
+          <div class="expertise-score">
+            <div class="text-3xl font-black text-[#e7a33a]">★★★★★</div>
+            <strong class="mt-3 block text-xl text-ink" data-zh="专业机构 · 诚信服务" data-en="Professional · Integrity">专业机构 · 诚信服务</strong>
+            <p class="mt-2 text-sm text-slate-600" data-zh="所有委托先评估合法性、可行性与风险边界。" data-en="Every request starts with legality, feasibility, and risk boundary assessment.">所有委托先评估合法性、可行性与风险边界。</p>
+            <a class="button button-primary mt-5 w-full" href="/contact/" data-zh="提交咨询" data-en="Start Inquiry">提交咨询</a>
+          </div>
         </div>
       </div>
     </section>

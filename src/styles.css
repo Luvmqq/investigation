@@ -169,6 +169,10 @@
     box-shadow: 0 14px 32px rgba(16, 32, 51, 0.045);
   }
 
+  .business-card img {
+    border-bottom: 1px solid #dbe4ec;
+  }
+
   .business-card:hover {
     border-color: #b8c9d6;
   }
@@ -233,6 +237,26 @@
     font-size: 1.6rem;
     font-weight: 900;
     line-height: 1.2;
+  }
+
+  .expertise-band {
+    border-block: 1px solid #dbe4ec;
+    display: grid;
+    gap: 2rem;
+    padding-block: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .expertise-score {
+    border: 1px solid #dbe4ec;
+    background: #f8fafc;
+    padding: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .expertise-band {
+      grid-template-columns: 1fr 20rem;
+      align-items: center;
+    }
   }
 
   .focus-ring:focus-visible {
