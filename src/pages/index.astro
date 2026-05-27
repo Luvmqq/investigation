@@ -39,78 +39,145 @@ const jsonLd = [
   }
 ];
 
-const heroTrust = [
-  { zh: "10+年行业经验", en: "10+ years experience" },
-  { zh: "专业机构", en: "Professional organization" },
-  { zh: "诚信服务", en: "Integrity service" },
-  { zh: "隐私与保密处理", en: "Private and confidential" }
+const audiences = [
+  {
+    titleZh: "跨境关系判断",
+    titleEn: "Relationship Decisions",
+    bodyZh: "帮助海外客户了解中国境内关系对象的现实情况、生活状态和重要疑点。",
+    bodyEn: "Understand practical context, lifestyle consistency, and key concerns about a person in China."
+  },
+  {
+    titleZh: "私人委托评估",
+    titleEn: "Private Matter Assessment",
+    bodyZh: "围绕个人背景、公开信息、线下线索和可行性进行谨慎评估。",
+    bodyEn: "Review background clues, public information, offline context, and feasibility with discretion."
+  },
+  {
+    titleZh: "寻人与债务线索",
+    titleEn: "Locating and Debt Clues",
+    bodyZh: "为失联人员、亲友、前任、债务人等场景提供中国本地协助。",
+    bodyEn: "Local support for lost contacts, relatives, former partners, and debtor clue situations."
+  }
 ];
 
-const visualNotes = [
-  { zh: "本地", en: "Local", bodyZh: "中国大陆本地沟通与情况评估", bodyEn: "Mainland China local communication and assessment" },
-  { zh: "保密", en: "Private", bodyZh: "委托资料谨慎处理", bodyEn: "Discreet handling of case information" },
-  { zh: "合规", en: "Compliant", bodyZh: "先评估，再决定是否接案", bodyEn: "Assessment before case acceptance" }
+const why = [
+  { zh: "中立评估", en: "Objective", bodyZh: "不夸大承诺，先判断资料基础、合法性和可执行方式。", bodyEn: "No exaggerated promises; we first assess information, legality, and feasibility." },
+  { zh: "保密处理", en: "Confidential", bodyZh: "私人委托资料谨慎处理，避免不必要的信息扩散。", bodyEn: "Private case information is handled discreetly and with limited exposure." },
+  { zh: "本地经验", en: "China Expertise", bodyZh: "结合中国大陆本地沟通环境、城市线索和现实情况进行判断。", bodyEn: "Assessment is grounded in mainland China communication habits and local context." },
+  { zh: "清晰边界", en: "Clear Boundaries", bodyZh: "不提供黑客、定位、记录查询等违法服务，降低委托风险。", bodyEn: "No hacking, phone tracking, or unlawful record access, reducing client risk." }
 ];
 
 const process = [
-  { zh: "初步咨询", en: "Initial consultation", bodyZh: "简要说明事情经过和你想了解的问题。", bodyEn: "Tell us what happened and what you need to understand." },
-  { zh: "案件评估", en: "Case assessment", bodyZh: "评估可行性、风险、范围和所需资料。", bodyEn: "We assess feasibility, risk, scope, and required information." },
-  { zh: "调查方案", en: "Investigation plan", bodyZh: "提供适合中国本地执行的方案。", bodyEn: "We propose a practical local investigation approach." },
-  { zh: "本地协助", en: "Local assistance", bodyZh: "中国大陆本地团队按约定执行。", bodyEn: "Our mainland China team carries out agreed support work." },
-  { zh: "进展与结果", en: "Updates and report", bodyZh: "提供进展反馈与结果总结。", bodyEn: "You receive progress updates and a case summary." }
+  { zh: "提交情况", en: "Submit Context", bodyZh: "说明背景、所在国家和你需要确认的问题。", bodyEn: "Share the background, your country, and what you need to clarify." },
+  { zh: "合规评估", en: "Compliance Review", bodyZh: "确认目的是否合法、资料是否足够、是否适合接案。", bodyEn: "We review purpose, available information, legality, and suitability." },
+  { zh: "本地协助", en: "Local Support", bodyZh: "按约定范围进行公开信息研究、线索整理或线下核实。", bodyEn: "Public information research, clue organization, or offline verification within the agreed scope." },
+  { zh: "结果反馈", en: "Result Summary", bodyZh: "以可理解的方式总结现实情况、风险和下一步建议。", bodyEn: "Receive a clear summary of the situation, risks, and possible next steps." }
 ];
 ---
 
 <BaseLayout title={title} description={description} path="/" jsonLd={jsonLd}>
   <main>
-    <section class="overflow-hidden bg-white">
-      <div class="container-page grid gap-10 py-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-20">
+    <section class="relative overflow-hidden bg-white">
+      <div class="absolute inset-x-0 top-0 h-40 bg-[#e8f0f6]"></div>
+      <div class="container-page relative grid gap-10 py-12 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-20">
         <div>
-          <span class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-sm font-black text-brand-700" data-zh="面向海外华人的中国本地调查协助" data-en="For Overseas Chinese Clients">面向海外华人的中国本地调查协助</span>
+          <span class="eyebrow" data-zh="Local Investigation Support" data-en="Local Investigation Support">Local Investigation Support</span>
           <h1 class="mt-5 max-w-4xl text-4xl font-black leading-[1.08] text-ink sm:text-5xl md:text-6xl" data-zh="中国大陆本地调查协助服务" data-en="Investigation Assistance in Mainland China">中国大陆本地调查协助服务</h1>
-
-          <div class="relative mt-6 lg:hidden">
-            <img class="aspect-[16/11] w-full rounded-lg object-cover shadow-soft" src="/images/china-business-scene.svg" alt="China city and business communication scene" loading="eager" />
-            <div class="absolute bottom-3 left-3 right-3 rounded-lg bg-white/92 p-3 shadow-soft">
-              <p class="text-sm font-black text-brand-800" data-zh="10+年行业经验 · 专业机构 · 诚信服务" data-en="10+ years · Professional · Integrity service">10+年行业经验 · 专业机构 · 诚信服务</p>
-            </div>
-          </div>
-
-          <p class="mt-6 max-w-2xl text-base text-slate-600 sm:text-lg" data-zh="南京星外天商务咨询有限公司为海外华人提供中国大陆境内的婚恋关系调查、个人情况了解、寻人协助、债务人线索调查与私人委托协助服务。" data-en="Nanjing Xingwaitian Business Consulting Co., Ltd. provides local investigation assistance for overseas Chinese clients who need help understanding people, relationships, debts, and private situations in mainland China.">南京星外天商务咨询有限公司为海外华人提供中国大陆境内的婚恋关系调查、个人情况了解、寻人协助、债务人线索调查与私人委托协助服务。</p>
+          <p class="mt-5 max-w-2xl text-lg text-slate-600" data-zh="为海外华人和跨境客户提供关系情况了解、个人背景评估、寻人协助与债务人线索调查支持。先评估合法性与可行性，再决定是否接受委托。" data-en="Local support for overseas Chinese and cross-border clients who need relationship clarification, background assessment, locating assistance, and debtor clue investigation in mainland China.">为海外华人和跨境客户提供关系情况了解、个人背景评估、寻人协助与债务人线索调查支持。先评估合法性与可行性，再决定是否接受委托。</p>
           <div class="mt-8 flex flex-wrap gap-3">
-            <a class="button button-primary" href="/contact/" data-zh="WhatsApp 咨询" data-en="WhatsApp Consultation">WhatsApp 咨询</a>
-            <a class="button button-secondary" href="#services" data-zh="查看服务" data-en="View Services">查看服务</a>
+            <a class="button button-primary" href="/contact/" data-zh="提交咨询" data-en="Start Inquiry">提交咨询</a>
+            <a class="button button-secondary" href="#services" data-zh="查看服务范围" data-en="View Services">查看服务范围</a>
           </div>
-          <div class="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {heroTrust.map((item) => (
-              <div class="card p-4 text-sm font-black text-slate-700" data-zh={item.zh} data-en={item.en}>{item.zh}</div>
+          <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              ["10+年行业经验", "10+ Years"],
+              ["专业机构", "Professional"],
+              ["诚信服务", "Integrity"],
+              ["保密处理", "Confidential"]
+            ].map(([zh, en]) => (
+              <div class="border-l-4 border-[#e7a33a] bg-slate-50 p-4 text-sm font-black text-slate-700" data-zh={zh} data-en={en}>{zh}</div>
             ))}
           </div>
         </div>
 
-        <div class="relative hidden lg:block">
-          <img class="aspect-[4/3] w-full rounded-lg object-cover shadow-soft" src="/images/china-business-scene.svg" alt="China city and business communication scene" loading="eager" />
-          <div class="card absolute -bottom-6 left-6 right-6 p-5">
-            <h2 class="text-xl font-black text-brand-800" data-zh="你是否需要了解中国境内某个人或某件事的真实情况？" data-en="Need to understand a situation in China?">你是否需要了解中国境内某个人或某件事的真实情况？</h2>
-            <ul class="mt-4 grid gap-2 text-sm text-slate-600">
-              <li data-zh="婚恋关系疑虑、生活状态真实性了解。" data-en="Relationship concerns and lifestyle consistency checks.">婚恋关系疑虑、生活状态真实性了解。</li>
-              <li data-zh="个人背景线索、公开信息整理与情况判断。" data-en="Background clues and public information research.">个人背景线索、公开信息整理与情况判断。</li>
-              <li data-zh="寻找失联亲友、前任、债务人或其他目标人员。" data-en="Locating lost contacts, former partners, or debtors.">寻找失联亲友、前任、债务人或其他目标人员。</li>
-            </ul>
+        <div class="checkup-panel p-4">
+          <img class="aspect-[4/3] w-full object-cover" src="/images/china-business-scene.svg" alt="China city and business communication scene" loading="eager" />
+          <div class="grid gap-3 border-x border-b border-slate-200 p-5 sm:grid-cols-3">
+            <div>
+              <strong class="block text-2xl font-black text-brand-700">4</strong>
+              <span class="text-xs font-bold text-slate-600" data-zh="核心服务方向" data-en="Core service areas">核心服务方向</span>
+            </div>
+            <div>
+              <strong class="block text-2xl font-black text-brand-700">6</strong>
+              <span class="text-xs font-bold text-slate-600" data-zh="资质图片展示" data-en="Credential images">资质图片展示</span>
+            </div>
+            <div>
+              <strong class="block text-2xl font-black text-brand-700">0</strong>
+              <span class="text-xs font-bold text-slate-600" data-zh="违法服务承诺" data-en="Illegal service promises">违法服务承诺</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="bg-slate-50 py-8 lg:py-12">
-      <div class="container-page grid gap-4 md:grid-cols-[1.15fr_.85fr] md:items-center">
-        <img class="aspect-[16/9] w-full rounded-lg object-cover shadow-soft" src="/images/china-business-scene.svg" alt="Business investigation support visual" loading="lazy" />
-        <div class="grid gap-3 sm:grid-cols-3 md:grid-cols-1">
-          {visualNotes.map((item) => (
-            <div class="card p-5">
-              <strong class="text-2xl font-black text-brand-700" data-zh={item.zh} data-en={item.en}>{item.zh}</strong>
-              <p class="mt-1 text-sm text-slate-600" data-zh={item.bodyZh} data-en={item.bodyEn}>{item.bodyZh}</p>
-            </div>
+    <section class="border-y border-slate-200 bg-[#f0f4f7] py-14">
+      <div class="container-page">
+        <h2 class="text-center text-3xl font-black text-ink" data-zh="谁会使用我们的调查协助？" data-en="Who Uses Our Investigation Support?">谁会使用我们的调查协助？</h2>
+        <p class="mx-auto mt-3 max-w-3xl text-center text-slate-600" data-zh="海外客户通常不是要冒险获取隐私，而是需要在重要关系、财务或家庭决策前降低不确定性。" data-en="Overseas clients usually need to reduce uncertainty before important relationship, financial, or family decisions.">海外客户通常不是要冒险获取隐私，而是需要在重要关系、财务或家庭决策前降低不确定性。</p>
+        <div class="mt-8 grid gap-5 md:grid-cols-3">
+          {audiences.map((item) => (
+            <article class="card p-6 text-center">
+              <div class="mx-auto grid size-14 place-items-center rounded-full bg-brand-50 text-2xl font-black text-brand-700">✓</div>
+              <h3 class="mt-4 text-xl font-black text-ink" data-zh={item.titleZh} data-en={item.titleEn}>{item.titleZh}</h3>
+              <p class="mt-3 text-sm text-slate-600" data-zh={item.bodyZh} data-en={item.bodyEn}>{item.bodyZh}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="bg-white py-16 lg:py-20">
+      <div class="container-page">
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
+          <div>
+            <span class="eyebrow" data-zh="Our Services" data-en="Our Services">Our Services</span>
+            <h2 class="section-title mt-4" data-zh="本地调查协助服务范围" data-en="Local Investigation Support Services">本地调查协助服务范围</h2>
+          </div>
+          <p class="section-kicker" data-zh="以实际可执行的中国本地协助为核心，服务内容保持清晰、合规、可沟通。" data-en="Practical mainland China support with clear scope, compliance boundaries, and direct communication.">以实际可执行的中国本地协助为核心，服务内容保持清晰、合规、可沟通。</p>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {services.map((service) => <ServiceCard service={service} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#edf3f7] py-16">
+      <div class="container-page grid gap-8 lg:grid-cols-[1fr_.85fr] lg:items-center">
+        <div class="checkup-panel p-7">
+          <span class="eyebrow" data-zh="Assessment Report" data-en="Assessment Report">Assessment Report</span>
+          <h2 class="mt-4 text-3xl font-black leading-tight text-ink" data-zh="把零散线索整理成可判断的现实情况" data-en="Turn scattered clues into a practical situation assessment">把零散线索整理成可判断的现实情况</h2>
+          <p class="mt-4 text-slate-600" data-zh="我们关注的是可理解、可沟通、可用于决策的信息整理，而不是夸张承诺。每个委托会先确认目标、资料基础、风险和可执行方式。" data-en="We focus on clear, decision-useful information rather than exaggerated promises. Each request starts with purpose, information, risk, and feasibility assessment.">我们关注的是可理解、可沟通、可用于决策的信息整理，而不是夸张承诺。每个委托会先确认目标、资料基础、风险和可执行方式。</p>
+          <a class="button button-primary mt-6" href="/contact/" data-zh="开始案件评估" data-en="Start Case Assessment">开始案件评估</a>
+        </div>
+        <blockquote class="border-l-4 border-[#e7a33a] bg-white p-6 text-slate-700 shadow-sm">
+          <p class="text-xl font-semibold leading-relaxed" data-zh="“很多跨境关系或债务问题，真正困难的不是信息少，而是不知道哪些线索可信、哪些方式合规。”" data-en="“In many cross-border relationship or debt matters, the challenge is not only missing information, but knowing which clues are reliable and which methods are lawful.”">“很多跨境关系或债务问题，真正困难的不是信息少，而是不知道哪些线索可信、哪些方式合规。”</p>
+          <footer class="mt-4 text-sm font-bold text-brand-700" data-zh="中国本地调查协助团队" data-en="Mainland China Local Support Team">中国本地调查协助团队</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="bg-white py-16 lg:py-20">
+      <div class="container-page">
+        <div class="text-center">
+          <span class="eyebrow" data-zh="Why Work With Us" data-en="Why Work With Us">Why Work With Us</span>
+          <h2 class="section-title mt-4" data-zh="为什么选择星外天调查协助？" data-en="Why Choose Xingwaitian Support?">为什么选择星外天调查协助？</h2>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {why.map((item) => (
+            <article class="border-t-4 border-[#e7a33a] bg-slate-50 p-6">
+              <h3 class="text-xl font-black text-ink" data-zh={item.zh} data-en={item.en}>{item.zh}</h3>
+              <p class="mt-3 text-sm text-slate-600" data-zh={item.bodyZh} data-en={item.bodyEn}>{item.bodyZh}</p>
+            </article>
           ))}
         </div>
       </div>
@@ -120,47 +187,32 @@ const process = [
 
     <TrustGallery />
 
-    <section id="services" class="py-16 lg:py-20">
-      <div class="container-page">
-        <div class="max-w-3xl">
-          <h2 class="section-title" data-zh="我们可以协助的服务" data-en="What We Help With">我们可以协助的服务</h2>
-          <p class="mt-4 text-lg text-slate-600" data-zh="为需要中国大陆本地协助的海外客户，提供清晰、实际、可沟通的调查协助服务。" data-en="Clear, practical investigation support for overseas clients who need local assistance inside mainland China.">为需要中国大陆本地协助的海外客户，提供清晰、实际、可沟通的调查协助服务。</p>
-        </div>
-        <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {services.map((service) => <ServiceCard service={service} />)}
-        </div>
-      </div>
-    </section>
-
     <section class="bg-white py-16 lg:py-20">
-      <div class="container-page grid gap-8 lg:grid-cols-2">
-        <div class="card p-7">
-          <h2 class="section-title" data-zh="服务流程" data-en="How It Works">服务流程</h2>
-          <ol class="mt-6 grid gap-4">
-            {process.map((item, index) => (
-              <li class="grid grid-cols-[2.5rem_1fr] gap-3">
-                <span class="grid size-10 place-items-center rounded-lg bg-brand-600 font-black text-white">{index + 1}</span>
-                <div>
-                  <strong class="block text-ink" data-zh={item.zh} data-en={item.en}>{item.zh}</strong>
-                  <span class="text-sm text-slate-600" data-zh={item.bodyZh} data-en={item.bodyEn}>{item.bodyZh}</span>
-                </div>
-              </li>
-            ))}
-          </ol>
+      <div class="container-page grid gap-8 lg:grid-cols-[.95fr_1.05fr]">
+        <div>
+          <span class="eyebrow" data-zh="How It Works" data-en="How It Works">How It Works</span>
+          <h2 class="section-title mt-4" data-zh="清晰流程，降低沟通成本" data-en="A Clear Process That Reduces Uncertainty">清晰流程，降低沟通成本</h2>
         </div>
-        <div class="card border-orange-200 bg-orange-50 p-7">
-          <h2 class="text-2xl font-black text-orange-800" data-zh="我们不提供的服务" data-en="What We Do Not Provide">我们不提供的服务</h2>
-          <p class="mt-4 text-slate-700" data-zh="我们不提供黑客入侵、手机定位、银行流水、酒店记录、通信记录、非法个人信息获取等违法服务。" data-en="We do not provide illegal hacking, phone tracking, bank record access, hotel record access, communication record access, or any unlawful personal data service.">我们不提供黑客入侵、手机定位、银行流水、酒店记录、通信记录、非法个人信息获取等违法服务。</p>
-          <p class="mt-4 text-slate-700" data-zh="所有委托需先评估后决定是否接受，客户需保证委托目的合法、正当。" data-en="All cases are reviewed before acceptance. Clients must ensure that the purpose of the request is lawful and legitimate.">所有委托需先评估后决定是否接受，客户需保证委托目的合法、正当。</p>
-        </div>
+        <ol class="grid gap-4">
+          {process.map((item, index) => (
+            <li class="card grid grid-cols-[3rem_1fr] gap-4 p-5">
+              <span class="grid size-12 place-items-center bg-brand-700 font-black text-white">{index + 1}</span>
+              <div>
+                <strong class="text-lg text-ink" data-zh={item.zh} data-en={item.en}>{item.zh}</strong>
+                <p class="mt-1 text-sm text-slate-600" data-zh={item.bodyZh} data-en={item.bodyEn}>{item.bodyZh}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
 
-    <section class="py-16 lg:py-20">
+    <section class="bg-[#f0f4f7] py-16 lg:py-20">
       <div class="container-page grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
         <div>
-          <h2 class="section-title" data-zh="常见问题" data-en="Frequently Asked Questions">常见问题</h2>
-          <p class="mt-4 text-slate-600" data-zh="联系前可以先了解以下基础问题。" data-en="Basic answers before you contact us.">联系前可以先了解以下基础问题。</p>
+          <span class="eyebrow" data-zh="FAQ" data-en="FAQ">FAQ</span>
+          <h2 class="section-title mt-4" data-zh="常见问题" data-en="Frequently Asked Questions">常见问题</h2>
+          <p class="mt-4 text-slate-600" data-zh="联系前可以先了解基础边界，尤其是合规与保密问题。" data-en="Understand the basic boundaries before contacting us, especially compliance and confidentiality.">联系前可以先了解基础边界，尤其是合规与保密问题。</p>
         </div>
         <FAQ />
       </div>
