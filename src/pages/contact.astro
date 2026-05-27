@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { site } from "@/data/site";
+---
+
+<BaseLayout title={`联系咨询 | ${site.nameZh}`} description="通过 WhatsApp、Telegram、Email 或表单联系中国大陆本地调查协助团队。" path="/contact/">
+  <main>
+    <Breadcrumbs items={[{ href: "/contact/", labelZh: "联系", labelEn: "Contact" }]} />
+    <section class="bg-white py-16">
+      <div class="container-page grid gap-10 lg:grid-cols-[.85fr_1.15fr]">
+        <div>
+          <h1 class="text-5xl font-black text-ink" data-zh="需要了解中国境内的真实情况？" data-en="Need Help With a Situation in China?">需要了解中国境内的真实情况？</h1>
+          <p class="mt-5 text-lg text-slate-600" data-zh="请简单描述你的情况，我们会先评估是否可以协助。建议不要在第一次联系时发送过多敏感资料。" data-en="Send a short summary of your case. We will review whether we can assist. Please avoid sending excessive sensitive information in the first message.">请简单描述你的情况，我们会先评估是否可以协助。建议不要在第一次联系时发送过多敏感资料。</p>
+          <div class="mt-8 grid gap-4 text-slate-700">
+            <p><strong data-zh="公司：" data-en="Company:">公司：</strong><br />{site.companyEn}<br />{site.companyZh}</p>
+            <p><strong data-zh="建议联系方式：" data-en="Suggested contact channels:">建议联系方式：</strong><br />WhatsApp / Telegram / Email</p>
+            <p><strong data-zh="官网参考：" data-en="Official website:">官网参考：</strong><br /><a class="font-bold text-brand-700" href={site.officialWebsite} target="_blank" rel="noopener noreferrer">www.njxingwaitian.com</a></p>
+          </div>
+        </div>
+        <ContactForm />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

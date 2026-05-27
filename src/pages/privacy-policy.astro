@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { site } from "@/data/site";
+---
+
+<BaseLayout title={`隐私政策 | ${site.nameZh}`} description="中国大陆调查协助服务隐私政策，说明咨询信息、案件资料和联系方式的处理原则。" path="/privacy-policy/">
+  <main>
+    <Breadcrumbs items={[{ href: "/privacy-policy/", labelZh: "隐私政策", labelEn: "Privacy Policy" }]} />
+    <section class="bg-white py-16">
+      <article class="container-page prose prose-slate max-w-4xl">
+        <h1 data-zh="隐私政策" data-en="Privacy Policy">隐私政策</h1>
+        <p data-zh="我们重视客户隐私。客户在咨询中提供的联系方式、案件描述和相关资料，仅用于评估与沟通委托事项。" data-en="We respect client privacy. Contact details, case descriptions, and related materials are used only for assessment and communication about the request.">我们重视客户隐私。客户在咨询中提供的联系方式、案件描述和相关资料，仅用于评估与沟通委托事项。</p>
+        <h2 data-zh="信息使用" data-en="Use of Information">信息使用</h2>
+        <p data-zh="我们不会将客户资料出售给第三方。必要的内部协作会尽量控制在最小范围。" data-en="We do not sell client information to third parties. Necessary internal collaboration is limited to the minimum practical scope.">我们不会将客户资料出售给第三方。必要的内部协作会尽量控制在最小范围。</p>
+        <h2 data-zh="信息边界" data-en="Information Boundary">信息边界</h2>
+        <p data-zh="请勿在初次联系时发送身份证件、账户密码、银行卡信息或其他高度敏感资料。" data-en="Please do not send identity documents, account passwords, bank card details, or highly sensitive materials in the first message.">请勿在初次联系时发送身份证件、账户密码、银行卡信息或其他高度敏感资料。</p>
+        <h2 data-zh="数据保留" data-en="Data Retention">数据保留</h2>
+        <p data-zh="不再需要的咨询信息会根据业务需要进行整理或删除。" data-en="Information that is no longer needed may be organized or deleted according to business needs.">不再需要的咨询信息会根据业务需要进行整理或删除。</p>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { site } from "@/data/site";
+---
+
+<BaseLayout title={`合规声明 | ${site.nameZh}`} description="中国大陆调查协助服务合规声明：不提供黑客、手机定位、开房记录、通信记录、银行流水等违法服务。" path="/legal-disclaimer/">
+  <main>
+    <Breadcrumbs items={[{ href: "/legal-disclaimer/", labelZh: "合规声明", labelEn: "Legal Disclaimer" }]} />
+    <section class="bg-white py-16">
+      <article class="container-page prose prose-slate max-w-4xl">
+        <h1 data-zh="合规声明" data-en="Legal Disclaimer">合规声明</h1>
+        <p data-zh="本网站提供的是中国大陆本地调查协助、公开信息研究、情况了解和现实情况评估，不承诺任何违法方式获取信息。" data-en="This website provides local investigation assistance, public information research, situation assessment, and practical support in mainland China. We do not promise to obtain information through unlawful methods.">本网站提供的是中国大陆本地调查协助、公开信息研究、情况了解和现实情况评估，不承诺任何违法方式获取信息。</p>
+        <h2 data-zh="禁止服务" data-en="Prohibited Services">禁止服务</h2>
+        <p data-zh="我们不提供黑客入侵、手机定位、开房记录、通信记录、银行流水、非法个人信息获取、偷拍或任何侵犯他人合法权益的服务。" data-en="We do not provide hacking, phone tracking, hotel records, communication records, bank records, unlawful personal data access, covert filming, or any service that infringes others' lawful rights.">我们不提供黑客入侵、手机定位、开房记录、通信记录、银行流水、非法个人信息获取、偷拍或任何侵犯他人合法权益的服务。</p>
+        <h2 data-zh="委托责任" data-en="Client Responsibility">委托责任</h2>
+        <p data-zh="客户需保证委托目的合法、正当，并对提供资料的真实性和合法来源负责。" data-en="Clients must ensure that the purpose of the request is lawful and legitimate, and are responsible for the truthfulness and lawful source of provided materials.">客户需保证委托目的合法、正当，并对提供资料的真实性和合法来源负责。</p>
+        <h2 data-zh="接案评估" data-en="Case Review">接案评估</h2>
+        <p data-zh="所有委托都需要先评估。对于不适合、风险过高或可能涉及违法的事项，我们会拒绝接受。" data-en="All requests require assessment. We decline matters that are unsuitable, high-risk, or potentially unlawful.">所有委托都需要先评估。对于不适合、风险过高或可能涉及违法的事项，我们会拒绝接受。</p>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

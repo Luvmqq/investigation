@@ -1,0 +1,69 @@
+---
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import SEO from "@/components/SEO.astro";
+import "@/styles.css";
+
+const { title, description, path, type, image, jsonLd } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1f4f82" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <SEO title={title} description={description} path={path} type={type} image={image} jsonLd={jsonLd} />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+    <a class="button fixed bottom-4 left-4 right-4 z-40 bg-emerald-500 text-white shadow-lg sm:left-auto sm:right-5" href="/contact/" data-zh="WhatsApp 咨询" data-en="WhatsApp Consultation">WhatsApp 咨询</a>
+    <script is:inline src="/vendor/opencc-full.js"></script>
+    <script is:inline>
+      const buttons = Array.from(document.querySelectorAll("[data-lang-button]"));
+      const fallbackPairs = {
+        "调查": "調查", "协助": "協助", "服务": "服務", "大陆": "大陸", "本地": "本地",
+        "隐私": "隱私", "保密": "保密", "联系": "聯繫", "咨询": "諮詢", "专业": "專業",
+        "机构": "機構", "诚信": "誠信", "经验": "經驗", "关系": "關係", "真实": "真實",
+        "情况": "情況", "了解": "了解", "个人": "個人", "背景": "背景", "寻人": "尋人",
+        "债务": "債務", "线索": "線索", "团队": "團隊", "跨境": "跨境", "沟通": "溝通",
+        "评估": "評估", "资料": "資料", "公开": "公開", "信息": "資訊", "网站": "網站",
+        "证书": "證書", "资质": "資質", "登记": "登記", "官网": "官網", "页面": "頁面",
+        "华人": "華人", "客户": "客戶", "简体中文": "簡體中文", "隐私政策": "隱私政策"
+      };
+      const converter = window.OpenCC ? OpenCC.Converter({ from: "cn", to: "tw" }) : null;
+      const titleZh = document.title;
+      const titleEn = document.querySelector("meta[property='og:title']")?.content || "China Investigation Support";
+
+      function fallbackTraditional(text) {
+        return Object.entries(fallbackPairs).reduce((value, [from, to]) => value.split(from).join(to), text || "");
+      }
+
+      function valueFor(el, lang) {
+        if (lang === "en") return el.dataset.en || el.textContent;
+        if (lang === "tw") return el.dataset.tw || (converter && el.dataset.zh ? converter(el.dataset.zh) : fallbackTraditional(el.dataset.zh || el.textContent));
+        return el.dataset.zh || el.textContent;
+      }
+
+      function setLang(lang) {
+        document.documentElement.lang = lang === "en" ? "en" : lang === "tw" ? "zh-TW" : "zh-CN";
+        document.querySelectorAll("[data-zh], [data-en], [data-tw]").forEach((el) => {
+          if (el.dataset.placeholderZh || el.dataset.placeholderEn) return;
+          el.textContent = valueFor(el, lang);
+        });
+        document.querySelectorAll("[data-placeholder-zh], [data-placeholder-en]").forEach((el) => {
+          el.placeholder = lang === "en" ? el.dataset.placeholderEn : lang === "tw" && converter ? converter(el.dataset.placeholderZh) : lang === "tw" ? fallbackTraditional(el.dataset.placeholderZh) : el.dataset.placeholderZh;
+        });
+        buttons.forEach((button) => button.classList.toggle("active", button.dataset.langButton === lang));
+        localStorage.setItem("siteLang", lang);
+        document.title = lang === "en" ? titleEn : lang === "tw" && converter ? converter(titleZh) : lang === "tw" ? fallbackTraditional(titleZh) : titleZh;
+      }
+
+      buttons.forEach((button) => button.addEventListener("click", () => setLang(button.dataset.langButton)));
+      setLang(localStorage.getItem("siteLang") || "zh");
+    </script>
+  </body>
+</html>

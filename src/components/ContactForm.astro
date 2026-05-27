@@ -1,0 +1,33 @@
+<form class="card grid gap-4 p-6" name="contact" method="POST" data-netlify="true" netlify-honeypot="company">
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="hidden">
+    <label>Company <input name="company" /></label>
+  </p>
+  <label class="grid gap-1 text-sm font-bold text-slate-700">
+    <span data-zh="姓名" data-en="Name">姓名</span>
+    <input class="rounded-lg border border-slate-200 px-4 py-3" name="name" type="text" autocomplete="name" required data-placeholder-zh="姓名" data-placeholder-en="Name" placeholder="姓名" />
+  </label>
+  <label class="grid gap-1 text-sm font-bold text-slate-700">
+    <span data-zh="邮箱或 WhatsApp" data-en="Email / WhatsApp">邮箱或 WhatsApp</span>
+    <input class="rounded-lg border border-slate-200 px-4 py-3" name="contact" type="text" autocomplete="email" required data-placeholder-zh="邮箱或 WhatsApp" data-placeholder-en="Email / WhatsApp" placeholder="邮箱或 WhatsApp" />
+  </label>
+  <label class="grid gap-1 text-sm font-bold text-slate-700">
+    <span data-zh="所在国家/地区" data-en="Country / Region">所在国家/地区</span>
+    <input class="rounded-lg border border-slate-200 px-4 py-3" name="country" type="text" data-placeholder-zh="例如：美国、加拿大、新加坡" data-placeholder-en="For example: US, Canada, Singapore" placeholder="例如：美国、加拿大、新加坡" />
+  </label>
+  <label class="grid gap-1 text-sm font-bold text-slate-700">
+    <span data-zh="委托类型" data-en="Type of case">委托类型</span>
+    <select class="rounded-lg border border-slate-200 px-4 py-3" name="caseType">
+      <option data-zh="婚恋关系调查" data-en="Relationship investigation">婚恋关系调查</option>
+      <option data-zh="个人背景调查" data-en="Background investigation">个人背景调查</option>
+      <option data-zh="寻人协助" data-en="Locate someone">寻人协助</option>
+      <option data-zh="债务人线索" data-en="Debtor location">债务人线索</option>
+      <option data-zh="其他私人委托" data-en="Other private matter">其他私人委托</option>
+    </select>
+  </label>
+  <label class="grid gap-1 text-sm font-bold text-slate-700">
+    <span data-zh="情况描述" data-en="Description">情况描述</span>
+    <textarea class="min-h-36 rounded-lg border border-slate-200 px-4 py-3" name="description" required data-placeholder-zh="请简要描述事情经过和你想了解的问题" data-placeholder-en="Briefly describe what happened and what you need to understand" placeholder="请简要描述事情经过和你想了解的问题"></textarea>
+  </label>
+  <button class="button button-primary" type="submit" data-zh="提交咨询" data-en="Send Inquiry">提交咨询</button>
+</form>

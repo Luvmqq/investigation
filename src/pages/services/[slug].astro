@@ -1,0 +1,96 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import CTA from "@/components/CTA.astro";
+import FAQ from "@/components/FAQ.astro";
+import { faqs } from "@/data/faq";
+import { services } from "@/data/services";
+import { site } from "@/data/site";
+
+export function getStaticPaths() {
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+}
+
+const { service } = Astro.props;
+const path = `/services/${service.slug}/`;
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.titleEn,
+    alternateName: service.titleZh,
+    description: service.seoDescription,
+    provider: { "@type": "Organization", name: site.companyEn, alternateName: site.companyZh },
+    areaServed: "Mainland China"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: service.titleEn, item: new URL(path, site.url).toString() }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.qZh, acceptedAnswer: { "@type": "Answer", text: faq.aZh } }))
+  }
+];
+---
+
+<BaseLayout title={service.seoTitle} description={service.seoDescription} path={path} jsonLd={jsonLd}>
+  <main>
+    <Breadcrumbs items={[{ href: path, labelZh: service.titleZh, labelEn: service.titleEn }]} />
+    <section class="bg-white py-16">
+      <div class="container-page grid gap-10 lg:grid-cols-[1fr_.8fr] lg:items-start">
+        <div>
+          <span class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-sm font-black text-brand-700" data-zh="中国大陆本地调查支持" data-en="Local Investigation Support in Mainland China">中国大陆本地调查支持</span>
+          <h1 class="mt-5 text-5xl font-black leading-tight text-ink" data-zh={service.titleZh} data-en={service.titleEn}>{service.titleZh}</h1>
+          <p class="mt-5 text-lg text-slate-600" data-zh={service.descriptionZh} data-en={service.descriptionEn}>{service.descriptionZh}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a class="button button-primary" href="/contact/" data-zh="咨询该服务" data-en="Ask About This Service">咨询该服务</a>
+            <a class="button button-secondary" href="/legal-disclaimer/" data-zh="查看合规说明" data-en="View Legal Disclaimer">查看合规说明</a>
+          </div>
+        </div>
+        <aside class="card p-6">
+          <h2 class="text-2xl font-black text-brand-800" data-zh="可协助方向" data-en="What We Can Help With">可协助方向</h2>
+          <ul class="mt-5 grid gap-3">
+            {service.bulletsZh.map((item, index) => (
+              <li class="flex gap-3 text-slate-700">
+                <span class="mt-2 size-2 rounded-full bg-brand-600"></span>
+                <span data-zh={item} data-en={service.bulletsEn[index]}>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <section class="py-16">
+      <div class="container-page grid gap-6 md:grid-cols-3">
+        <article class="card p-6">
+          <h2 class="text-xl font-black text-brand-800" data-zh="适用人群" data-en="Who It Helps">适用人群</h2>
+          <p class="mt-3 text-slate-600" data-zh="海外华人、港澳台、新加坡、北美和澳洲等需要中国本地协助的跨境客户。" data-en="Overseas Chinese and cross-border clients who need local assistance in China.">海外华人、港澳台、新加坡、北美和澳洲等需要中国本地协助的跨境客户。</p>
+        </article>
+        <article class="card p-6">
+          <h2 class="text-xl font-black text-brand-800" data-zh="信息边界" data-en="Information Boundary">信息边界</h2>
+          <p class="mt-3 text-slate-600" data-zh="重点基于公开信息研究、现实情况评估和合法合规的本地协助。" data-en="Focused on public information research, practical situation assessment, and lawful local support.">重点基于公开信息研究、现实情况评估和合法合规的本地协助。</p>
+        </article>
+        <article class="card p-6">
+          <h2 class="text-xl font-black text-brand-800" data-zh="先评估后接案" data-en="Assessment First">先评估后接案</h2>
+          <p class="mt-3 text-slate-600" data-zh="我们会先确认委托目的、资料基础、可行性和风险，再决定是否接受。" data-en="We review purpose, available information, feasibility, and risk before accepting a case.">我们会先确认委托目的、资料基础、可行性和风险，再决定是否接受。</p>
+        </article>
+      </div>
+    </section>
+    <section class="bg-white py-16">
+      <div class="container-page grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
+        <div>
+          <h2 class="section-title" data-zh="服务问答" data-en="Service FAQ">服务问答</h2>
+          <p class="mt-4 text-slate-600" data-zh="以下问题适用于大部分调查协助委托。" data-en="These answers apply to most investigation assistance requests.">以下问题适用于大部分调查协助委托。</p>
+        </div>
+        <FAQ />
+      </div>
+    </section>
+    <CTA />
+  </main>
+</BaseLayout>

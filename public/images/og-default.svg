@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f9fc"/>
+  <rect x="70" y="70" width="1060" height="490" rx="28" fill="#fff" stroke="#dbe5ef" stroke-width="4"/>
+  <rect x="120" y="120" width="90" height="90" rx="18" fill="#1f4f82"/>
+  <text x="150" y="180" font-family="Arial, sans-serif" font-size="58" font-weight="900" fill="#fff">X</text>
+  <text x="120" y="295" font-family="Arial, sans-serif" font-size="56" font-weight="900" fill="#102033">China Investigation Support</text>
+  <text x="120" y="370" font-family="Arial, sans-serif" font-size="34" fill="#1f4f82">中国大陆本地调查协助服务</text>
+  <text x="120" y="438" font-family="Arial, sans-serif" font-size="28" fill="#64748b">For overseas Chinese clients who need local support in mainland China.</text>
+</svg>

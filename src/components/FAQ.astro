@@ -1,0 +1,12 @@
+---
+import { faqs } from "@/data/faq";
+---
+
+<div class="grid gap-3">
+  {faqs.map((faq, index) => (
+    <details class="card p-5" open={index === 0}>
+      <summary class="cursor-pointer font-black text-brand-800" data-zh={faq.qZh} data-en={faq.qEn}>{faq.qZh}</summary>
+      <p class="mt-3 text-slate-600" data-zh={faq.aZh} data-en={faq.aEn}>{faq.aZh}</p>
+    </details>
+  ))}
+</div>

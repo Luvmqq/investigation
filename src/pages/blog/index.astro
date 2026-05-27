@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { site } from "@/data/site";
+
+const posts = (await getCollection("blog")).filter((post) => !post.data.draft).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title={`调查协助文章 | ${site.nameZh}`} description="中国调查协助、关系核实、寻人协助、债务人线索调查等面向海外华人的原创指南。" path="/blog/">
+  <main>
+    <Breadcrumbs items={[{ href: "/blog/", labelZh: "文章", labelEn: "Blog" }]} />
+    <section class="bg-white py-16">
+      <div class="container-page">
+        <h1 class="text-5xl font-black text-ink" data-zh="调查协助文章" data-en="Investigation Support Blog">调查协助文章</h1>
+        <p class="mt-5 max-w-3xl text-lg text-slate-600" data-zh="围绕海外华人常见的跨境关系、寻人、背景了解和债务线索场景，发布可长期运营的 SEO 内容。" data-en="Practical SEO articles for overseas Chinese clients about cross-border relationships, locating people, background checks, and debtor clues.">围绕海外华人常见的跨境关系、寻人、背景了解和债务线索场景，发布可长期运营的 SEO 内容。</p>
+        <div class="mt-10 grid gap-5 md:grid-cols-2">
+          {posts.map((post) => (
+            <article class="card p-6">
+              <p class="text-sm font-black text-brand-700">{post.data.category}</p>
+              <h2 class="mt-2 text-2xl font-black text-ink"><a href={`/blog/${post.slug}/`}>{post.data.title}</a></h2>
+              <p class="mt-3 text-slate-600">{post.data.description}</p>
+              <time class="mt-4 block text-sm text-slate-500" datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString("zh-CN")}</time>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

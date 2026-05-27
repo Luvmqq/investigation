@@ -1,0 +1,23 @@
+<div class="flex rounded-full border border-slate-200 bg-white p-1" aria-label="Language switch">
+  <button class="lang-button active" type="button" data-lang-button="zh">简</button>
+  <button class="lang-button" type="button" data-lang-button="tw">繁</button>
+  <button class="lang-button" type="button" data-lang-button="en">EN</button>
+</div>
+
+<style>
+  .lang-button {
+    min-width: 2.25rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    font-weight: 900;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .lang-button.active {
+    background: #1f4f82;
+    color: white;
+  }
+</style>
