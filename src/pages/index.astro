@@ -14,12 +14,30 @@ const description = site.defaultDescription;
 const jsonLd = [
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "ProfessionalService"],
     name: site.companyEn,
     alternateName: site.companyZh,
     url: site.url,
     sameAs: [site.officialWebsite],
-    email: site.email
+    email: site.email,
+    areaServed: [
+      { "@type": "Country", name: "China" },
+      { "@type": "AdministrativeArea", name: "Mainland China" }
+    ],
+    serviceType: [
+      "Mainland China investigation support",
+      "Relationship investigation assistance",
+      "Background investigation assistance",
+      "Locate someone in China",
+      "Debtor clue investigation"
+    ],
+    slogan: "Fact-check. Assess. Make safer cross-border decisions.",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "case assessment",
+      email: site.email,
+      availableLanguage: ["Chinese", "Traditional Chinese", "English"]
+    }
   },
   {
     "@context": "https://schema.org",

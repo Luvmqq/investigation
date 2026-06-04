@@ -26,12 +26,16 @@ const schema = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
 
 <title>{title}</title>
 <meta name="description" content={description} />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <link rel="canonical" href={canonical} />
+<link rel="alternate" type="application/rss+xml" title={`${site.nameEn} RSS`} href={new URL("/rss.xml", site.url).toString()} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content={type} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={imageUrl} />
+<meta property="og:site_name" content={site.nameEn} />
+<meta property="og:locale" content="zh_CN" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
