@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { site } from "@/data/site";
+import { t } from "@/lib/i18n";
+import type { SiteLang } from "@/lib/i18n";
+
+const { lang } = Astro.props as { lang: SiteLang };
+
+const title = t(`隐私政策 | ${site.nameZh}`, `Privacy Policy | ${site.nameEn}`, lang);
+const description = t("中国大陆调查协助服务隐私政策，说明咨询信息、案件资料和联系方式的处理原则。", "Privacy policy for the mainland China investigation support site, explaining how inquiry information, case materials, and contact details are handled.", lang);
+---
+
+<BaseLayout title={title} description={description} path="/privacy-policy/" lang={lang}>
+  <main>
+    <Breadcrumbs lang={lang} items={[{ href: "/privacy-policy/", labelZh: "隐私政策", labelEn: "Privacy Policy" }]} />
+    <section class="bg-white py-16">
+      <article class="container-page prose prose-slate max-w-4xl">
+        <h1>{t("隐私政策", "Privacy Policy", lang)}</h1>
+        <p>{t("我们重视客户隐私。客户在咨询中提供的联系方式、案件描述和相关资料，仅用于评估与沟通委托事项。", "We respect client privacy. Contact details, case descriptions, and related materials are used only for assessment and communication about the request.", lang)}</p>
+        <h2>{t("信息使用", "Use of Information", lang)}</h2>
+        <p>{t("我们不会将客户资料出售给第三方。必要的内部协作会尽量控制在最小范围。", "We do not sell client information to third parties. Necessary internal collaboration is limited to the minimum practical scope.", lang)}</p>
+        <h2>{t("信息边界", "Information Boundary", lang)}</h2>
+        <p>{t("请勿在初次联系时发送身份证件、账户密码、银行卡信息或其他高度敏感资料。", "Please do not send identity documents, account passwords, bank card details, or highly sensitive materials in the first message.", lang)}</p>
+        <h2>{t("数据保留", "Data Retention", lang)}</h2>
+        <p>{t("不再需要的咨询信息会根据业务需要进行整理或删除。", "Information that is no longer needed may be organized or deleted according to business needs.", lang)}</p>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,20 +1,24 @@
 ---
+import { localizePath, t } from "@/lib/i18n";
+import type { SiteLang } from "@/lib/i18n";
+
 interface Crumb {
   href: string;
   labelZh: string;
   labelEn: string;
+  labelTw?: string;
 }
 
-const { items = [] } = Astro.props as { items: Crumb[] };
+const { items = [], lang = "zh" } = Astro.props as { items: Crumb[]; lang?: SiteLang };
 ---
 
-<nav class="container-page py-4 text-sm text-slate-500" aria-label="Breadcrumb">
+<nav class="container-page py-4 text-sm text-slate-500" aria-label={t("面包屑导航", "Breadcrumb", lang)}>
   <ol class="flex flex-wrap items-center gap-2">
-    <li><a class="hover:text-brand-600" href="/" data-zh="首页" data-en="Home">首页</a></li>
+    <li><a class="hover:text-brand-600" href={localizePath("/", lang)}>{t("首页", "Home", lang)}</a></li>
     {items.map((item) => (
       <>
         <li aria-hidden="true">/</li>
-        <li><a class="hover:text-brand-600" href={item.href} data-zh={item.labelZh} data-en={item.labelEn}>{item.labelZh}</a></li>
+        <li><a class="hover:text-brand-600" href={localizePath(item.href, lang)}>{t(item.labelZh, item.labelEn, lang, item.labelTw)}</a></li>
       </>
     ))}
   </ol>

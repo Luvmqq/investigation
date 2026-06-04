@@ -1,5 +1,7 @@
 ---
 import { site } from "@/data/site";
+import { getAlternateLinks, getOgLocale, localizePath } from "@/lib/i18n";
+import type { SiteLang } from "@/lib/i18n";
 
 interface Props {
   title?: string;
@@ -8,6 +10,8 @@ interface Props {
   type?: "website" | "article";
   image?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  lang?: SiteLang;
+  noAlternates?: boolean;
 }
 
 const {
@@ -16,18 +20,24 @@ const {
   path = "/",
   type = "website",
   image = "/images/og-default.svg",
-  jsonLd = []
+  jsonLd = [],
+  lang = "zh",
+  noAlternates = false
 } = Astro.props;
 
-const canonical = new URL(path, site.url).toString();
+const canonicalPath = localizePath(path, lang);
+const canonical = new URL(canonicalPath, site.url).toString();
 const imageUrl = new URL(image, site.url).toString();
 const schema = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+const alternates = getAlternateLinks(path);
 ---
 
 <title>{title}</title>
 <meta name="description" content={description} />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <link rel="canonical" href={canonical} />
+{!noAlternates &&
+  alternates.map((item) => <link rel="alternate" hreflang={item.hreflang} href={new URL(item.path, site.url).toString()} />)}
 <link rel="alternate" type="application/rss+xml" title={`${site.nameEn} RSS`} href={new URL("/rss.xml", site.url).toString()} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -35,7 +45,7 @@ const schema = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={imageUrl} />
 <meta property="og:site_name" content={site.nameEn} />
-<meta property="og:locale" content="zh_CN" />
+<meta property="og:locale" content={getOgLocale(lang)} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />

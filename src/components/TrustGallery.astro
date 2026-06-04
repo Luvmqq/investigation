@@ -1,4 +1,13 @@
 ---
+import { t } from "@/lib/i18n";
+import type { SiteLang } from "@/lib/i18n";
+
+interface Props {
+  lang: SiteLang;
+}
+
+const { lang } = Astro.props as Props;
+
 const certificates = [
   {
     src: "/images/trust/trust-01.png",
@@ -49,10 +58,10 @@ const certificates = [
   <div class="container-page">
     <div class="grid gap-6 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
       <div>
-        <span class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-sm font-black text-brand-700" data-zh="资质与信任背书" data-en="Credentials and Trust">资质与信任背书</span>
-        <h2 class="section-title mt-4" data-zh="真实资质展示，增强委托信任感" data-en="Credential Display for Stronger Trust">真实资质展示，增强委托信任感</h2>
+        <span class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-sm font-black text-brand-700">{t("资质与信任背书", "Credentials and Trust", lang)}</span>
+        <h2 class="section-title mt-4">{t("真实资质展示，增强委托信任感", "Credential Display for Stronger Trust", lang)}</h2>
       </div>
-      <p class="text-slate-600" data-zh="以下图片用于展示星外天过往资质、诚信服务与正规登记信息。本站仍坚持先评估、后接案，不提供任何违法信息获取服务。" data-en="The following images show Xingwaitian's past credentials, integrity service recognition, and registered business information. This site still follows assessment before acceptance and does not provide unlawful information access.">以下图片用于展示星外天过往资质、诚信服务与正规登记信息。本站仍坚持先评估、后接案，不提供任何违法信息获取服务。</p>
+      <p class="text-slate-600">{t("以下图片用于展示星外天过往资质、诚信服务与正规登记信息。本站仍坚持先评估、后接案，不提供任何违法信息获取服务。", "The following images show Xingwaitian's past credentials, integrity service recognition, and registered business information. This site still follows assessment before acceptance and does not provide unlawful information access.", lang)}</p>
     </div>
 
     <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -62,20 +71,20 @@ const certificates = [
             <img
               class="size-full object-cover"
               src={item.src}
-              alt={item.titleZh}
+              alt={t(item.titleZh, item.titleEn, lang)}
               loading="lazy"
               onerror="this.closest('figure').classList.add('is-missing')"
             />
             <div class="trust-fallback absolute inset-0 hidden place-items-center p-5 text-center">
               <div>
-                <strong class="block text-brand-800" data-zh="等待图片文件" data-en="Image file pending">等待图片文件</strong>
+                <strong class="block text-brand-800">{t("等待图片文件", "Image file pending", lang)}</strong>
                 <span class="mt-1 block text-xs text-slate-500">{item.src}</span>
               </div>
             </div>
           </div>
           <figcaption class="p-4">
-            <h3 class="font-black text-ink" data-zh={item.titleZh} data-en={item.titleEn}>{item.titleZh}</h3>
-            <p class="mt-1 text-sm text-slate-600" data-zh={item.noteZh} data-en={item.noteEn}>{item.noteZh}</p>
+            <h3 class="font-black text-ink">{t(item.titleZh, item.titleEn, lang)}</h3>
+            <p class="mt-1 text-sm text-slate-600">{t(item.noteZh, item.noteEn, lang)}</p>
           </figcaption>
         </figure>
       ))}

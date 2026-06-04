@@ -1,5 +1,13 @@
 ---
 import { navItems, site } from "@/data/site";
+import { localizePath, t } from "@/lib/i18n";
+import type { SiteLang } from "@/lib/i18n";
+
+interface Props {
+  lang: SiteLang;
+}
+
+const { lang } = Astro.props as Props;
 ---
 
 <footer class="bg-[#102033] pt-12 text-sm text-white/70">
@@ -7,38 +15,38 @@ import { navItems, site } from "@/data/site";
     <div>
       <strong class="block text-lg text-white">{site.companyEn}</strong>
       <span class="mt-1 block text-white/80">{site.companyZh}</span>
-      <p class="mt-4 max-w-sm" data-zh="面向海外华人的中国大陆本地调查协助服务，强调合规、保密与现实情况评估。" data-en="Mainland China local investigation support for overseas Chinese clients, focused on compliance, confidentiality, and practical situation assessment.">面向海外华人的中国大陆本地调查协助服务，强调合规、保密与现实情况评估。</p>
+      <p class="mt-4 max-w-sm">{t("面向海外华人的中国大陆本地调查协助服务，强调合规、保密与现实情况评估。", "Mainland China local investigation support for overseas Chinese clients, focused on compliance, confidentiality, and practical situation assessment.", lang)}</p>
     </div>
 
-    <nav class="grid gap-2" aria-label="Footer service">
-      <strong class="text-white" data-zh="服务" data-en="Services">服务</strong>
+    <nav class="grid gap-2" aria-label={t("页脚服务导航", "Footer services navigation", lang)}>
+      <strong class="text-white">{t("服务", "Services", lang)}</strong>
       {navItems.slice(1, 5).map((item) => (
-        <a class="hover:text-white" href={item.href} data-zh={item.zh} data-en={item.en}>{item.zh}</a>
+        <a class="hover:text-white" href={localizePath(item.href, lang)}>{t(item.zh, item.en, lang)}</a>
       ))}
     </nav>
 
-    <nav class="grid gap-2" aria-label="Footer explore">
-      <strong class="text-white" data-zh="探索" data-en="Explore">探索</strong>
-      <a class="hover:text-white" href="/about/" data-zh="关于我们" data-en="About Us">关于我们</a>
-      <a class="hover:text-white" href="/blog/" data-zh="文章" data-en="Blog">文章</a>
-      <a class="hover:text-white" href="/privacy-policy/" data-zh="隐私政策" data-en="Privacy Policy">隐私政策</a>
-      <a class="hover:text-white" href="/legal-disclaimer/" data-zh="合规声明" data-en="Legal Disclaimer">合规声明</a>
+    <nav class="grid gap-2" aria-label={t("页脚探索导航", "Footer explore navigation", lang)}>
+      <strong class="text-white">{t("探索", "Explore", lang)}</strong>
+      <a class="hover:text-white" href={localizePath("/about/", lang)}>{t("关于我们", "About Us", lang)}</a>
+      <a class="hover:text-white" href={localizePath("/blog/", lang)}>{t("文章", "Blog", lang)}</a>
+      <a class="hover:text-white" href={localizePath("/privacy-policy/", lang)}>{t("隐私政策", "Privacy Policy", lang)}</a>
+      <a class="hover:text-white" href={localizePath("/legal-disclaimer/", lang)}>{t("合规声明", "Legal Disclaimer", lang)}</a>
     </nav>
 
     <div>
-      <strong class="text-white" data-zh="联系渠道" data-en="Contact Channels">联系渠道</strong>
+      <strong class="text-white">{t("联系渠道", "Contact Channels", lang)}</strong>
       <div class="mt-3 flex flex-wrap gap-2">
-        <a class="button min-h-10 border border-white/20 bg-white/5 px-3 py-2 text-xs text-white" href="/contact/">WhatsApp</a>
-        <a class="button min-h-10 border border-white/20 bg-white/5 px-3 py-2 text-xs text-white" href="/contact/">Telegram</a>
-        <a class="button min-h-10 border border-white/20 bg-white/5 px-3 py-2 text-xs text-white" href="/contact/" data-zh="微信" data-en="WeChat">微信</a>
+        <a class="button min-h-10 border border-white/20 bg-white/5 px-3 py-2 text-xs text-white" href={localizePath("/contact/", lang)}>WhatsApp</a>
+        <a class="button min-h-10 border border-white/20 bg-white/5 px-3 py-2 text-xs text-white" href={localizePath("/contact/", lang)}>Telegram</a>
+        <a class="button min-h-10 border border-white/20 bg-white/5 px-3 py-2 text-xs text-white" href={localizePath("/contact/", lang)}>{t("微信", "WeChat", lang)}</a>
       </div>
-      <a class="mt-4 block font-bold text-white" href={site.officialWebsite} target="_blank" rel="noopener noreferrer" data-zh="星外天官网" data-en="Official Website">星外天官网</a>
+      <a class="mt-4 block font-bold text-white" href={site.officialWebsite} target="_blank" rel="noopener noreferrer">{t("星外天官网", "Official Website", lang)}</a>
     </div>
   </div>
   <div class="border-t border-white/10 py-4">
     <div class="container-page flex flex-wrap justify-between gap-3 text-xs text-white/55">
       <span>© 2026 {site.nameEn}</span>
-      <span data-zh="所有委托需先评估合法性与可行性" data-en="All requests require legality and feasibility assessment">所有委托需先评估合法性与可行性</span>
+      <span>{t("所有委托需先评估合法性与可行性", "All requests require legality and feasibility assessment", lang)}</span>
     </div>
   </div>
 </footer>

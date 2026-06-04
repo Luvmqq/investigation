@@ -1,0 +1,35 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Credentials from "@/components/Credentials.astro";
+import CTA from "@/components/CTA.astro";
+import { site } from "@/data/site";
+import { t } from "@/lib/i18n";
+import type { SiteLang } from "@/lib/i18n";
+
+const { lang } = Astro.props as { lang: SiteLang };
+
+const title = t(`关于我们 | ${site.companyZh}`, `About Us | ${site.companyEn}`, lang);
+const description = t("了解南京星外天商务咨询有限公司及中国大陆本地调查协助服务定位。", "Learn about Nanjing Xingwaitian Business Consulting Co., Ltd. and its mainland China local investigation support positioning.", lang);
+---
+
+<BaseLayout title={title} description={description} path="/about/" lang={lang}>
+  <main>
+    <Breadcrumbs lang={lang} items={[{ href: "/about/", labelZh: "关于我们", labelEn: "About Us" }]} />
+    <section class="bg-white py-16">
+      <div class="container-page max-w-4xl">
+        <h1 class="text-5xl font-black text-ink">{t("关于我们", "About Us", lang)}</h1>
+        <p class="mt-6 text-lg text-slate-600">{t("南京星外天商务咨询有限公司为海外华人和跨境客户提供中国大陆本地调查协助、情况了解、公开信息研究和现实情况评估。", "Nanjing Xingwaitian Business Consulting Co., Ltd. provides local investigation assistance, situation assessment, public information research, and practical support in mainland China for overseas Chinese and cross-border clients.", lang)}</p>
+        <p class="mt-4 text-slate-600">{t("原官网公开信息显示，南京星外天商务信息咨询有限公司自 2001 年开办以来积累本地服务经验，并以守法、诚信、高效、保密为经营理念。本站面向海外客户采用更审慎的“调查协助”和“情况评估”表达。", "The original official website states that Nanjing Xingwaitian Business Information Consulting Co., Ltd. has accumulated local service experience since 2001 and follows a service philosophy of legality, integrity, efficiency, and confidentiality. This site uses more careful language such as investigation assistance and situation assessment for overseas clients.", lang)}</p>
+        <a class="button button-secondary mt-6" href={site.officialWebsite} target="_blank" rel="noopener noreferrer">{t("查看星外天官网", "View Official Website", lang)}</a>
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+          <div class="card p-6"><h2 class="text-xl font-black text-brand-800">{t("本地支持", "Local Support", lang)}</h2><p class="mt-3 text-slate-600">{t("熟悉中国大陆本地沟通环境和线下执行方式。", "Familiar with mainland China communication context and local execution.", lang)}</p></div>
+          <div class="card p-6"><h2 class="text-xl font-black text-brand-800">{t("谨慎保密", "Discreet Handling", lang)}</h2><p class="mt-3 text-slate-600">{t("私人委托会在评估后谨慎处理，并控制信息范围。", "Private requests are reviewed and handled discreetly with controlled information scope.", lang)}</p></div>
+          <div class="card p-6"><h2 class="text-xl font-black text-brand-800">{t("合规边界", "Clear Boundaries", lang)}</h2><p class="mt-3 text-slate-600">{t("不提供黑客、手机定位、非法记录查询等违法服务。", "We do not provide hacking, phone tracking, or unlawful record access.", lang)}</p></div>
+        </div>
+      </div>
+    </section>
+    <Credentials lang={lang} />
+    <CTA lang={lang} />
+  </main>
+</BaseLayout>

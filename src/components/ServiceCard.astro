@@ -1,5 +1,9 @@
 ---
+import { localizePath, t } from "@/lib/i18n";
+import type { SiteLang } from "@/lib/i18n";
+
 interface Props {
+  lang: SiteLang;
   service: {
     slug: string;
     titleZh: string;
@@ -11,19 +15,19 @@ interface Props {
   };
 }
 
-const { service } = Astro.props;
+const { service, lang } = Astro.props as Props;
 ---
 
 <article class="business-card flex h-full flex-col p-6">
-  <h3 class="text-xl font-black text-brand-800" data-zh={service.titleZh} data-en={service.titleEn}>{service.titleZh}</h3>
-  <p class="mt-3 flex-1 text-slate-600" data-zh={service.excerptZh} data-en={service.excerptEn}>{service.excerptZh}</p>
+  <h3 class="text-xl font-black text-brand-800">{t(service.titleZh, service.titleEn, lang)}</h3>
+  <p class="mt-3 flex-1 text-slate-600">{t(service.excerptZh, service.excerptEn, lang)}</p>
   <ul class="mt-4 space-y-2 text-sm text-slate-600">
     {service.bulletsZh.map((item, index) => (
       <li class="flex gap-2">
         <span class="mt-1 size-1.5 shrink-0 rounded-full bg-brand-600"></span>
-        <span data-zh={item} data-en={service.bulletsEn[index]}>{item}</span>
+        <span>{t(item, service.bulletsEn[index], lang)}</span>
       </li>
     ))}
   </ul>
-  <a class="mt-5 font-black text-brand-700 hover:text-brand-800" href={`/services/${service.slug}/`} data-zh="查看详情" data-en="View Details">查看详情</a>
+  <a class="mt-5 font-black text-brand-700 hover:text-brand-800" href={localizePath(`/services/${service.slug}/`, lang)}>{t("查看详情", "View Details", lang)}</a>
 </article>

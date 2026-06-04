@@ -1,0 +1,269 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CTA from "@/components/CTA.astro";
+import Credentials from "@/components/Credentials.astro";
+import FAQ from "@/components/FAQ.astro";
+import ServiceCard from "@/components/ServiceCard.astro";
+import TrustGallery from "@/components/TrustGallery.astro";
+import { faqs } from "@/data/faq";
+import { services } from "@/data/services";
+import { site } from "@/data/site";
+import { localizePath, t } from "@/lib/i18n";
+import type { SiteLang } from "@/lib/i18n";
+
+interface Props {
+  lang: SiteLang;
+}
+
+const { lang } = Astro.props as Props;
+
+const title = t(site.defaultTitle, "Mainland China Investigation Support | Nanjing Xingwaitian Business Consulting Co., Ltd.", lang);
+const description = t(
+  site.defaultDescription,
+  "Mainland China investigation support for overseas Chinese clients, including relationship verification, background assessment, locating assistance, and debtor clue investigation.",
+  lang
+);
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "ProfessionalService"],
+    name: site.companyEn,
+    alternateName: site.companyZh,
+    url: site.url,
+    sameAs: [site.officialWebsite],
+    email: site.email,
+    areaServed: [
+      { "@type": "Country", name: "China" },
+      { "@type": "AdministrativeArea", name: "Mainland China" }
+    ],
+    serviceType: [
+      "Mainland China investigation support",
+      "Relationship investigation assistance",
+      "Background investigation assistance",
+      "Locate someone in China",
+      "Debtor clue investigation"
+    ],
+    slogan: "Fact-check. Assess. Make safer cross-border decisions.",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "case assessment",
+      email: site.email,
+      availableLanguage: ["Chinese", "Traditional Chinese", "English"]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.nameEn,
+    alternateName: site.nameZh,
+    url: site.url
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: t(faq.qZh, faq.qEn, lang),
+      acceptedAnswer: { "@type": "Answer", text: t(faq.aZh, faq.aEn, lang) }
+    }))
+  }
+];
+
+const audiences = [
+  {
+    image: "/images/generated/use-overseas.png",
+    titleZh: "海外华人与跨境家庭",
+    titleEn: "Overseas Chinese and Cross-border Families",
+    bodyZh: "在婚恋、家庭、亲友或私人关系中，需要了解中国境内对象的现实情况。",
+    bodyEn: "For relationship, family, relative, or private matters that require practical context in mainland China."
+  },
+  {
+    image: "/images/generated/use-background.png",
+    titleZh: "私人背景与风险判断",
+    titleEn: "Private Background and Risk Assessment",
+    bodyZh: "围绕公开信息、现实线索和可行边界，整理更适合决策的信息。",
+    bodyEn: "Organize public information, practical clues, and risk indicators into decision-useful context."
+  },
+  {
+    image: "/images/generated/use-locate.png",
+    titleZh: "寻人与债务线索场景",
+    titleEn: "Locating and Debtor Clue Situations",
+    bodyZh: "为失联亲友、前任、债务人等场景提供中国大陆本地协助。",
+    bodyEn: "Local mainland China support for missing contacts, former partners, relatives, and debtor clues."
+  }
+];
+
+const reportItems = [
+  { zh: "关系真实性与生活状态线索", en: "Relationship and lifestyle consistency clues" },
+  { zh: "个人公开信息、背景线索与风险提示", en: "Public information, background clues, and risk notes" },
+  { zh: "寻人、债务人线索与本地沟通可行性", en: "Locating support, debtor clues, and communication feasibility" },
+  { zh: "合规边界、可执行范围与后续建议", en: "Compliance boundaries, feasible scope, and next-step suggestions" }
+];
+
+const why = [
+  { value: "01", zh: "中立评估", en: "Objective Assessment", bodyZh: "先判断资料基础、合法性和可执行方式，不夸大承诺。", bodyEn: "We first assess information quality, legality, and feasibility without exaggerated promises." },
+  { value: "02", zh: "保密沟通", en: "Confidential Communication", bodyZh: "私人委托资料谨慎处理，减少不必要的信息扩散。", bodyEn: "Private case information is handled discreetly with limited exposure." },
+  { value: "03", zh: "中国本地经验", en: "China Local Expertise", bodyZh: "结合中国大陆城市线索、沟通环境和现实情况进行判断。", bodyEn: "Assessment is grounded in mainland China city clues, communication habits, and local context." },
+  { value: "04", zh: "清晰边界", en: "Clear Boundaries", bodyZh: "不提供黑客、定位、记录查询等违法服务，降低委托风险。", bodyEn: "No hacking, phone tracking, or unlawful record access, reducing client risk." }
+];
+
+const process = [
+  { zh: "提交背景", en: "Submit Context", bodyZh: "说明所在国家、事情背景和希望确认的问题。", bodyEn: "Share your country, background context, and what you need to clarify." },
+  { zh: "初步评估", en: "Initial Review", bodyZh: "判断合法性、资料基础、可行性和服务边界。", bodyEn: "Review legality, available information, feasibility, and service boundaries." },
+  { zh: "本地协助", en: "Local Support", bodyZh: "在约定范围内做公开信息研究、线索整理或线下协助。", bodyEn: "Conduct public information research, clue organization, or offline support within scope." },
+  { zh: "结果反馈", en: "Result Summary", bodyZh: "提供清晰、可理解、便于决策的情况总结。", bodyEn: "Provide a clear, understandable, decision-useful summary." }
+];
+
+const trustStrip = [
+  { zh: "10+年行业经验", en: "10+ Years Experience" },
+  { zh: "专业机构", en: "Professional Organization" },
+  { zh: "诚信服务", en: "Integrity Service" },
+  { zh: "合规保密", en: "Compliance and Confidentiality" }
+];
+---
+
+<BaseLayout title={title} description={description} path="/" jsonLd={jsonLd} lang={lang}>
+  <main class="bg-white">
+    <section class="hero-rebuild">
+      <img class="hero-rebuild-image" src="/images/generated/hero-verification.png" alt={t("中国大陆本地调查协助", "Mainland China verification and investigation support workspace", lang)} loading="eager" />
+      <div class="container-page relative z-10">
+        <div class="hero-rebuild-copy">
+          <p class="section-label">{t("跨境核实服务", "Cross-border Verification", lang)}</p>
+          <h1>{t("中国大陆本地调查协助服务", "Mainland China Investigation Support", lang)}</h1>
+          <p class="hero-subtitle">{t("事实核实、情况评估、降低跨境决策风险。", "Fact-check. Assess. Make safer cross-border decisions.", lang)}</p>
+          <p class="hero-body">{t("面向海外华人和跨境客户，提供婚恋关系调查、个人背景了解、寻人协助、债务人线索调查与私人委托协助。先评估合法性与可行性，再决定是否接受委托。", "For overseas Chinese and cross-border clients, we support relationship checks, personal background assessment, locating assistance, debtor clue investigation, and private matter review. Every request is assessed for legality and feasibility first.", lang)}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a class="button button-primary" href={localizePath("/contact/", lang)}>{t("提交咨询", "Start Inquiry", lang)}</a>
+            <a class="button button-secondary" href="#services">{t("查看服务范围", "View Services", lang)}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-10">
+      <div class="container-page grid gap-4 border-y border-slate-200 py-8 md:grid-cols-4">
+        {trustStrip.map((item) => (
+          <div class="trust-strip-item">{t(item.zh, item.en, lang)}</div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-space bg-white">
+      <div class="container-page">
+        <div class="mx-auto max-w-3xl text-center">
+          <p class="section-label">{t("谁在使用我们", "Who Uses Us", lang)}</p>
+          <h2 class="section-title mt-3">{t("谁需要中国本地调查协助？", "Who Needs China Local Investigation Support?", lang)}</h2>
+        </div>
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          {audiences.map((item) => (
+            <article class="business-card overflow-hidden">
+              <img class="aspect-[16/10] w-full object-cover" src={item.image} alt={t(item.titleZh, item.titleEn, lang)} loading="lazy" />
+              <div class="p-7">
+                <h3 class="text-xl font-black text-ink">{t(item.titleZh, item.titleEn, lang)}</h3>
+                <p class="mt-4 text-slate-600">{t(item.bodyZh, item.bodyEn, lang)}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section-space border-y border-slate-200 bg-[#f8fafc]">
+      <div class="container-page">
+        <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
+          <div>
+            <p class="section-label">{t("服务内容", "Services", lang)}</p>
+            <h2 class="section-title mt-3">{t("本地调查协助服务", "Investigation Support Services", lang)}</h2>
+          </div>
+          <p class="text-lg text-slate-600">{t("服务范围围绕当前站点业务：关系调查、背景了解、寻人协助与债务人线索调查。每项服务都需要先做合规与可行性评估。", "The service scope remains focused on relationship investigation, background assessment, locating assistance, and debtor clue support. Each service starts with compliance and feasibility review.", lang)}</p>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {services.map((service) => <ServiceCard service={service} lang={lang} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space bg-white">
+      <div class="container-page grid gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
+        <div>
+          <p class="section-label">{t("评估报告", "Assessment Report", lang)}</p>
+          <h2 class="section-title mt-3">{t("情况评估与线索整理报告", "Situation Assessment and Clue Summary", lang)}</h2>
+          <p class="mt-5 text-lg text-slate-600">{t("我们提供的是可沟通、可决策、边界清晰的情况评估，而不是夸张承诺。所有委托都以合法、正当、可执行为前提。", "We provide clear, decision-useful assessment with defined boundaries, not exaggerated promises. Every request must be lawful, legitimate, and feasible.", lang)}</p>
+          <ul class="mt-7 grid gap-3">
+            {reportItems.map((item) => (
+              <li class="flex gap-3 text-sm font-semibold text-slate-700">
+                <span class="grid size-6 shrink-0 place-items-center bg-brand-700 text-xs text-white">✓</span>
+                <span>{t(item.zh, item.en, lang)}</span>
+              </li>
+            ))}
+          </ul>
+          <a class="button button-primary mt-8" href={localizePath("/contact/", lang)}>{t("开始案件评估", "Start Case Assessment", lang)}</a>
+        </div>
+        <img class="report-mockup-image" src="/images/generated/report-mockup.png" alt={t("调查协助评估报告示意图", "Situation assessment report mockup", lang)} loading="lazy" />
+      </div>
+    </section>
+
+    <section class="quote-band">
+      <div class="container-page max-w-4xl text-center">
+        <blockquote>{t("“跨境关系、债务和私人事务中的关键，不只是找到更多线索，而是判断哪些线索可信、哪些方式合规、哪些风险必须提前说明。”", "“In cross-border relationship, debt, and private matters, the key is not only finding more clues, but knowing which clues are reliable, which methods are lawful, and which risks must be explained first.”", lang)}</blockquote>
+        <p class="mt-5 text-sm font-black uppercase tracking-[.18em] text-[#e7a33a]">{t("中国本地调查协助团队", "Mainland China Local Support Team", lang)}</p>
+      </div>
+    </section>
+
+    <section class="section-space bg-white">
+      <div class="container-page">
+        <div class="mx-auto max-w-3xl text-center">
+          <p class="section-label">{t("为什么选择我们", "Why Choose Us", lang)}</p>
+          <h2 class="section-title mt-3">{t("为什么选择星外天调查协助？", "Why Choose Xingwaitian Support?", lang)}</h2>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {why.map((item) => (
+            <article class="business-card p-6">
+              <span class="text-sm font-black text-[#e7a33a]">{item.value}</span>
+              <h3 class="mt-4 text-xl font-black text-ink">{t(item.zh, item.en, lang)}</h3>
+              <p class="mt-3 text-sm text-slate-600">{t(item.bodyZh, item.bodyEn, lang)}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Credentials lang={lang} />
+
+    <TrustGallery lang={lang} />
+
+    <section class="section-space border-t border-slate-200 bg-white">
+      <div class="container-page grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
+        <div>
+          <p class="section-label">{t("服务流程", "Process", lang)}</p>
+          <h2 class="section-title mt-3">{t("清晰流程，降低跨境沟通成本", "A Clear Process for Cross-border Communication", lang)}</h2>
+        </div>
+        <ol class="grid gap-4">
+          {process.map((item, index) => (
+            <li class="business-card grid grid-cols-[3rem_1fr] gap-4 p-5">
+              <span class="grid size-12 place-items-center bg-brand-700 font-black text-white">{index + 1}</span>
+              <div>
+                <strong class="text-lg text-ink">{t(item.zh, item.en, lang)}</strong>
+                <p class="mt-1 text-sm text-slate-600">{t(item.bodyZh, item.bodyEn, lang)}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section-space border-t border-slate-200 bg-white">
+      <div class="container-page grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
+        <div>
+          <p class="section-label">FAQ</p>
+          <h2 class="section-title mt-3">{t("常见问题", "Frequently Asked Questions", lang)}</h2>
+          <p class="mt-4 text-slate-600">{t("联系前可以先了解基础边界，尤其是合规、保密和可行性评估。", "Understand the basic boundaries before contacting us, especially compliance, confidentiality, and feasibility assessment.", lang)}</p>
+        </div>
+        <FAQ lang={lang} />
+      </div>
+    </section>
+
+    <CTA lang={lang} />
+  </main>
+</BaseLayout>

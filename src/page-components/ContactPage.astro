@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import { site } from "@/data/site";
+import { t } from "@/lib/i18n";
+import type { SiteLang } from "@/lib/i18n";
+
+const { lang } = Astro.props as { lang: SiteLang };
+
+const title = t(`联系咨询 | ${site.nameZh}`, `Contact | ${site.nameEn}`, lang);
+const description = t("通过 WhatsApp、Telegram、Email 或表单联系中国大陆本地调查协助团队。", "Contact the mainland China local investigation support team through WhatsApp, Telegram, email, or the inquiry form.", lang);
+---
+
+<BaseLayout title={title} description={description} path="/contact/" lang={lang}>
+  <main>
+    <Breadcrumbs lang={lang} items={[{ href: "/contact/", labelZh: "联系", labelEn: "Contact" }]} />
+    <section class="bg-white py-16">
+      <div class="container-page grid gap-10 lg:grid-cols-[.85fr_1.15fr]">
+        <div>
+          <h1 class="text-5xl font-black text-ink">{t("需要了解中国境内的真实情况？", "Need Help With a Situation in China?", lang)}</h1>
+          <p class="mt-5 text-lg text-slate-600">{t("请简单描述你的情况，我们会先评估是否可以协助。建议不要在第一次联系时发送过多敏感资料。", "Send a short summary of your case. We will review whether we can assist. Please avoid sending excessive sensitive information in the first message.", lang)}</p>
+          <div class="mt-8 grid gap-4 text-slate-700">
+            <p><strong>{t("公司：", "Company:", lang)}</strong><br />{site.companyEn}<br />{site.companyZh}</p>
+            <p><strong>{t("建议联系方式：", "Suggested contact channels:", lang)}</strong><br />WhatsApp / Telegram / Email</p>
+            <p><strong>{t("官网参考：", "Official website:", lang)}</strong><br /><a class="font-bold text-brand-700" href={site.officialWebsite} target="_blank" rel="noopener noreferrer">www.njxingwaitian.com</a></p>
+          </div>
+        </div>
+        <ContactForm lang={lang} />
+      </div>
+    </section>
+  </main>
+</BaseLayout>
