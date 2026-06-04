@@ -105,6 +105,10 @@
     font-weight: 900;
   }
 
+  .section-space {
+    padding-block: clamp(4rem, 8vw, 6rem);
+  }
+
   .section-kicker {
     color: #5d7180;
     font-size: 1.05rem;
@@ -306,6 +310,82 @@
     line-height: 1.2;
   }
 
+  .hero-rebuild {
+    min-height: 720px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-rebuild::after {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.94) 37%, rgba(255, 255, 255, 0.5) 58%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .hero-rebuild-image {
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+  }
+
+  .hero-rebuild .container-page {
+    align-items: center;
+    display: grid;
+    min-height: 720px;
+  }
+
+  .hero-rebuild-copy {
+    max-width: 43rem;
+    padding-block: 5rem;
+  }
+
+  .hero-rebuild-copy h1 {
+    color: #102033;
+    font-size: clamp(3rem, 7vw, 5.8rem);
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 0.98;
+    margin-top: 1.3rem;
+  }
+
+  .hero-subtitle {
+    color: #165b86;
+    font-size: clamp(1.35rem, 2.6vw, 2rem);
+    font-weight: 800;
+    line-height: 1.25;
+    margin-top: 1.5rem;
+  }
+
+  .hero-body {
+    color: #475569;
+    font-size: 1.08rem;
+    margin-top: 1.4rem;
+    max-width: 40rem;
+  }
+
+  .report-mockup-image {
+    border: 1px solid #dbe4ec;
+    box-shadow: 0 30px 70px rgba(16, 32, 51, 0.14);
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .quote-band {
+    background: #102033;
+    color: white;
+    padding-block: clamp(4rem, 7vw, 5.5rem);
+  }
+
+  .quote-band blockquote {
+    font-size: clamp(1.6rem, 3vw, 2.35rem);
+    font-weight: 800;
+    line-height: 1.35;
+  }
+
   .expertise-band {
     border-block: 1px solid #dbe4ec;
     display: grid;
@@ -363,6 +443,23 @@
 @media (max-width: 560px) {
   .container-page {
     width: min(100% - 28px, 1120px);
+  }
+
+  .hero-rebuild,
+  .hero-rebuild .container-page {
+    min-height: auto;
+  }
+
+  .hero-rebuild::after {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.92) 58%, rgba(255, 255, 255, 0.75) 100%);
+  }
+
+  .hero-rebuild-image {
+    opacity: 0.42;
+  }
+
+  .hero-rebuild-copy {
+    padding-block: 4rem;
   }
 
   .hero-verification-visual {
