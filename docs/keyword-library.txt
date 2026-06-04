@@ -1,0 +1,96 @@
+[home-brand-cluster]
+Target URL: /
+Intent: navigational
+Primary Keywords:
+China investigation support
+mainland China investigation support
+Xingwaitian investigation support
+Nanjing Xingwaitian Business Consulting
+Secondary Keywords:
+China local verification service
+cross-border case assessment
+local investigation team in China
+
+[relationship-cluster]
+Target URL: /services/relationship-investigation-china/
+Intent: commercial
+Primary Keywords:
+relationship investigation China
+China relationship verification
+cross-border relationship check China
+private relationship investigation in China
+Secondary Keywords:
+verify someone in China
+WeChat relationship verification
+romance scam check China
+relationship background review China
+
+[background-cluster]
+Target URL: /services/background-investigation-china/
+Intent: commercial
+Primary Keywords:
+China background investigation
+background check in China
+personal background investigation China
+China due diligence for individuals
+Secondary Keywords:
+public information review China
+social footprint check China
+pre-lending background review
+relationship background review China
+
+[locate-cluster]
+Target URL: /services/locate-someone-china/
+Intent: transactional
+Primary Keywords:
+locate someone in China
+find a person in China
+China person locating service
+find lost family in China
+Secondary Keywords:
+find former partner in China
+locate lost contact in China
+search for family in China
+overseas Chinese locate someone
+
+[debtor-cluster]
+Target URL: /services/debtor-location-china/
+Intent: transactional
+Primary Keywords:
+debtor location China
+China debtor investigation
+find debtor in China
+debtor clue investigation China
+Secondary Keywords:
+lost borrower in China
+debtor contact verification China
+pre-recovery investigation China
+debt clue assessment China
+
+[compliance-cluster]
+Target URL: /legal-disclaimer/
+Intent: informational
+Primary Keywords:
+is private investigation legal in China
+China investigation legal boundaries
+what can a China investigator do
+lawful investigation support China
+Secondary Keywords:
+phone tracking China legality
+hotel records privacy risk
+hacking investigation risk
+personal data compliance China
+
+[blog-cluster]
+Target URL: /blog/
+Intent: informational
+Primary Keywords:
+China investigation blog
+overseas Chinese investigation guide
+China locating guide
+China background check guide
+Secondary Keywords:
+cross-border relationship verification
+China debt clues
+China local verification
+mainland China case assessment
